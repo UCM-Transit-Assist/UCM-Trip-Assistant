@@ -1,5 +1,5 @@
 import React from "react";
-import { MapsGroundingResponse, getAPIKey } from "./backend";
+import { MapsGroundingResponse, getAPIKey, getGoogleMapsApiKey } from "./backend";
 
 interface GoogleMapsProps {
   mapData: MapsGroundingResponse | null;
@@ -7,8 +7,8 @@ interface GoogleMapsProps {
 }
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
-  const apiKey = getAPIKey();
-  console.log("API Key: ", apiKey);
+  const googleMapsApiKey = getGoogleMapsApiKey();
+  console.log("Google Maps API Key: ", googleMapsApiKey);
 
   return (
     <div className="flex flex-col h-full p-4">
@@ -49,11 +49,9 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
           {/* Optional: Embed the first location in an iframe */}
           {mapData.locations[0] && (
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <p className="text-lg font-bold">
-                     {mapData.locations[0].title}
-              </p>
+              <p className="text-lg font-bold">{mapData.locations[0].title}</p>
               <iframe
-                src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(
+                src={`https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${encodeURIComponent(
                   mapData.locations[0].title
                 )}`}
                 width="100%"

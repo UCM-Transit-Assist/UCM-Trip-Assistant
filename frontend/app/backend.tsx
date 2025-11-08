@@ -1,12 +1,17 @@
 import { GoogleGenAI } from "@google/genai";
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
+console.log("Google Maps API Key: ", GOOGLE_MAPS_API_KEY); 
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-console.log("Gemini Api key: ", ai);
+console.log("Gemini Api key: ", ai); // AIzaSyDCv0oPQKwvpkwzjWM3XpEKZs8Qx2NXBB4
 
 export function getAPIKey() {
   return ai.apiKey;
+}
+export function getGoogleMapsApiKey() {
+  return GOOGLE_MAPS_API_KEY;
 }
 
 export interface MapLocation {
