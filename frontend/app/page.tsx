@@ -11,19 +11,19 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    // <div className="flex flex-row items-center justify-center h-screen w-screen">
-    //   <div className="border-r-2 h-full w-1/2">
-    //     <ChatBot
-    //       onResponse={setMapData}
-    //       isLoading={isLoading}
-    //       setIsLoading={setIsLoading}
-    //     />
-    //   </div>
+    <div className="flex flex-row items-center justify-center h-screen w-screen">
+      <div className="border-r-2 h-full w-1/2">
+        <ChatBot
+          onResponse={setMapData}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
+      </div>
 
-    //   <div className="w-1/2 h-full">
-    //     <GoogleMaps mapData={mapData} isLoading={isLoading} />
-    //   </div>
-    // </div>
-    <UCMBusRouteFinder />
+      <div className="w-1/2 h-full">
+        <GoogleMaps mapData={mapData} isLoading={isLoading} />
+      </div>
+    </div>
+    // <UCMBusRouteFinder />
   );
 }

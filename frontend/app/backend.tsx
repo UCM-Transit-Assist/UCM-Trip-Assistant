@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import axios from "axios";
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
@@ -26,6 +27,19 @@ export interface MapsGroundingResponse {
   locations: MapLocation[];
 }
 
+async function convertToLongitudeLatitude(address: string) {
+  console.log("address: ", address);
+
+  const response = await axios.get(
+    `https://maps.googleapis.com/maps/api/geocode/json?place_id=${address}&key=${GOOGLE_MAPS_API_KEY}`
+  );
+  console.log("convertToLongitudeLatitude response: ", response.data);
+
+  // return {
+  //   longitude: response.data.results[0].geometry.location.lng,
+  //   latitude: response.data.results[0].geometry.location.lat,
+  // };
+}
 export async function generateContentWithMapsGrounding(
   user_text: string,
   latitude: number = 37.30293194200341,
@@ -51,8 +65,9 @@ export async function generateContentWithMapsGrounding(
 
   const locations: MapLocation[] = [];
   const grounding = response.candidates?.[0]?.groundingMetadata;
+  const longitudeLatitude = [];
 
-  console.log("Grounding: ", grounding);
+  console.log("response.candidates: ", grounding);
 
   if (grounding?.groundingChunks) {
     for (const chunk of grounding.groundingChunks) {
@@ -61,6 +76,10 @@ export async function generateContentWithMapsGrounding(
           title: chunk.maps.title || "Unknown Location",
           uri: chunk.maps.uri || "",
         });
+
+        let chunks = chunk.maps.placeId;
+        let chunksArray = chunks.split("/");
+        convertToLongitudeLatitude(chunksArray[1]);
       }
     }
   }
