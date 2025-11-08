@@ -63,6 +63,6 @@ export async function generateContentWithMapsGrounding(
 
   return {
     text: response.text || "",
-    locations: locations,
+    locations: locations.slice(0, 5), // Limit to 5 locations
   };
 }

@@ -24,10 +24,6 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
         </div>
       ) : mapData && mapData.locations.length > 0 ? (
         <div className="space-y-4 overflow-y-auto">
-          <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2">Response:</h3>
-            <p className="whitespace-pre-wrap">{mapData.text}</p>
-          </div>
           {mapData.locations[0] && (
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <p className="text-lg font-bold">{mapData.locations[0].title}</p>
