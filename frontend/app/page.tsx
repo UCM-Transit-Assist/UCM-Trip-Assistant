@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-row items-center justify-center h-screen w-screen">
-      <div className="border-r-2 h-full border-red-500 w-1/2">
+      <div className="border-r-2 h-full w-1/2">
         <ChatBot 
           onResponse={setMapData} 
           isLoading={isLoading}

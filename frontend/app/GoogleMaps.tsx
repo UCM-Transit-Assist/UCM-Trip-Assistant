@@ -1,5 +1,9 @@
 import React from "react";
-import { MapsGroundingResponse, getAPIKey, getGoogleMapsApiKey } from "./backend";
+import {
+  MapsGroundingResponse,
+  getAPIKey,
+  getGoogleMapsApiKey,
+} from "./backend";
 
 interface GoogleMapsProps {
   mapData: MapsGroundingResponse | null;
@@ -24,6 +28,24 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
             <h3 className="font-semibold mb-2">Response:</h3>
             <p className="whitespace-pre-wrap">{mapData.text}</p>
           </div>
+          {mapData.locations[0] && (
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+              <p className="text-lg font-bold">{mapData.locations[0].title}</p>
+                              <iframe
+                                  
+                className="border-2 border-red-500 rounded-lg"
+                src={`https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${encodeURIComponent(
+                  mapData.locations[0].title
+                )}`}
+                width="100%"
+                height="600"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          )}
 
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-semibold mb-3">
@@ -47,22 +69,6 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
           </div>
 
           {/* Optional: Embed the first location in an iframe */}
-          {mapData.locations[0] && (
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <p className="text-lg font-bold">{mapData.locations[0].title}</p>
-              <iframe
-                src={`https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${encodeURIComponent(
-                  mapData.locations[0].title
-                )}`}
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          )}
         </div>
       ) : (
         <div className="flex items-center justify-center h-full">
