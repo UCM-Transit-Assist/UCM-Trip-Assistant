@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UCM Bus Route Map</title>
+    <style>
+        /* This CSS makes the map fill the entire page */
+        #map {
+            height: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        // --- 1. Define Your Custom Route Data ---
+        // In a real app, you might fetch this data from a database.
+
+        // Sample coordinates for UCM bus stops (e.g., Scholars Lot, Library)
+        const ucmBusStops = [
+            { name: "Scholars Lot", position: { lat: 37.3638, lng: -120.4323 } },
+            { name: "Library", position: { lat: 37.3653, lng: -120.4244 } },
+            { name: "Half Dome", position: { lat: 37.3683, lng: -120.4258 } }
+        ];
+
+        // Sample coordinates for the path of the bus route
+        const ucmRoutePath = [
+            { lat: 37.3638, lng: -120.4323 }, // Scholars Lot
+            { lat: 37.3645, lng: -120.4280 }, // Mid-point
+            { lat: 37.3653, lng: -120.4244 }, // Library
+            { lat: 37.3683, lng: -120.4258 }  // Half Dome
+        ];
+
+        // Sample "best" stop and "destination" (This would come from your Distance Matrix API call)
+        const bestStop = ucmBusStops[1].position; // e.g., Library stop
+        const userDestination = { lat: 37.3660, lng: -120.4230 }; // e.g., A specific building nearby
+
+
+        // --- 2. Initialize the Map ---
+        function initMap() {
+            // Create the map, centered on UC Merced
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: { lat: 37.3659, lng: -120.4266 }, // Center of UCM
+                mapId: "UCM_BUS_MAP" // Optional: for Cloud-based map styling
+            });
+
+            // --- 3. Draw Your Custom UCM Routes (Polylines) ---
+            const busRoute = new google.maps.Polyline({
+                path: ucmRoutePath,
+                geodesic: true,
+                strokeColor: "#0000FF", // Blue
+                strokeOpacity: 0.8,
+                strokeWeight: 4,
+            });
+            busRoute.setMap(map);
+
+            // --- 4. Show Your Stops (Markers) ---
+            ucmBusStops.forEach(stop => {
+                new google.maps.Marker({
+                    position: stop.position,
+                    map: map,
+                    title: stop.name,
+                    // Optional: custom icon for bus stops
+                    // icon: "http://maps.google.com/mapfiles/ms/icons/bus.png" 
+                });
+            });
+
+            // --- 5. Show the Final Walking Route (Directions Service) ---
+            // This is the part that draws the route from the "best stop" to the destination.
+
+            // Initialize the services
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                suppressMarkers: true, // We already have our own markers
+                polylineOptions: {
+                    strokeColor: "#00FF00", // Green for the walking path
+                    strokeWeight: 6,
+                    strokeOpacity: 0.7
+                }
+            });
+
+            // Attach the renderer to the map
+            directionsRenderer.setMap(map);
+
+            // Create the request
+            const request = {
+                origin: bestStop,
+                destination: userDestination,
+                travelMode: google.maps.TravelMode.WALKING // Critically important!
+            };
+
+            // Call the Directions Service
+            directionsService.route(request, (result, status) => {
+                if (status === "OK") {
+                    // If the route is found, display it
+                    directionsRenderer.setDirections(result);
+                } else {
+                    // Handle error
+                    window.alert("Walking directions request failed due to " + status);
+                }
+            });
+        }
+
+        // --- 6. Load the Google Maps API ---
+        // This async function calls initMap once the API is loaded.
+    </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhTFJDR_9SzRGqVWedunevvLnqu3NjC4g&callback=initMap&libraries=routes">
+    </script>
+</body>
+</html>

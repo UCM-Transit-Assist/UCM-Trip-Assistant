@@ -2,10 +2,12 @@ import { GoogleGenAI } from "@google/genai";
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
-console.log("Google Maps API Key: ", GOOGLE_MAPS_API_KEY); 
+// console.log("Google Maps API Key: ", GOOGLE_MAPS_API_KEY);
+
+const chipotle_coordinates = [37.31970104781838, -120.48617522530186];
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-console.log("Gemini Api key: ", ai); // AIzaSyDCv0oPQKwvpkwzjWM3XpEKZs8Qx2NXBB4
+// console.log("Gemini Api key: ", ai); // AIzaSyDCv0oPQKwvpkwzjWM3XpEKZs8Qx2NXBB4
 
 export function getAPIKey() {
   return ai.apiKey;
@@ -49,6 +51,8 @@ export async function generateContentWithMapsGrounding(
 
   const locations: MapLocation[] = [];
   const grounding = response.candidates?.[0]?.groundingMetadata;
+
+  console.log("Grounding: ", grounding);
 
   if (grounding?.groundingChunks) {
     for (const chunk of grounding.groundingChunks) {
