@@ -1,0 +1,310 @@
+{
+  "route": "Yosemite Express",
+  "semester": "Fall 2025",
+  "days": "Monday - Friday",
+  "direction": "Full Loop",
+  "stops": [
+    {
+      "id": "mercy_hospital_out",
+      "name": "Mercy Hospital / Tri-College (Outbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33919117445795, 
+        "lng": -120.46879489131155
+      },
+      "aliases": ["Mercy Hospital", "Tri-College"]
+    },
+    {
+      "id": "g_st_south_raleys",
+      "name": "G St. South (Raley's)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33122252300574, 
+        "lng": -120.46916283765779
+      },
+      "aliases": ["G Street Raley's", "Raley's"]
+    },
+    {
+      "id": "surgery_center_out",
+      "name": "University Surgery Center (Outbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33206692224449, 
+        "lng": -120.45170888044021
+      },
+      "aliases": ["Surgery Center", "University Surgical Center"]
+    },
+    {
+      "id": "moraga_subdivision",
+      "name": "Moraga Subdivision",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33209113947716, 
+        "lng": -120.43779646780489
+      },
+      "aliases": ["Moraga"]
+    },
+    {
+      "id": "utc",
+      "name": "University Transit Center (UTC)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.361474228296544, 
+        "lng": -120.4281067381593
+      },
+      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+    },
+    {
+      "id": "foothill_dr_in",
+      "name": "Foothill Dr.",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.3535394228369,
+        "lng": -120.46894870537594
+      },
+      "aliases": ["Foothill Drive"]
+    },
+    {
+      "id": "mercy_hospital_in",
+      "name": "Mercy Hospital / Tri-College (Inbound)",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33919117445795, 
+        "lng": -120.46879489131155
+      },
+      "aliases": ["Mercy Hospital In", "Tri-College In"]
+    },
+    {
+      "id": "g_st_south_raleys_in",
+      "name": "G St. South (Raley's) (Inbound)",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33122252300574, 
+        "lng": -120.46916283765779
+      },
+      "aliases": ["Raley's In"]
+    },
+    {
+      "id": "surgery_center_in",
+      "name": "University Surgery Center (Inbound)",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33206692224449, 
+        "lng": -120.45170888044021
+      },
+      "aliases": ["Surgery Center In"]
+    },
+    {
+      "id": "moraga_subdivision_in",
+      "name": "Moraga Subdivision (Inbound)",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33209113947716, 
+        "lng": -120.43779646780489
+      },
+      "aliases": ["Moraga In"]
+    }
+  ],
+  "schedule": [
+    {
+      "trip_id": 1,
+      "times": {
+        "mercy_hospital_out": "9:16",
+        "g_st_south_raleys": "9:19",
+        "surgery_center_out": "9:24",
+        "moraga_subdivision_out": "9:27",
+        "utc": "9:34",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "9:43",
+        "g_st_south_raleys_in": "9:46",
+        "surgery_center_in": "9:51",
+        "moraga_subdivision_in": "9:54"
+      }
+    },
+    {
+      "trip_id": 2,
+      "times": {
+        "mercy_hospital_out": "10:25",
+        "g_st_south_raleys": "10:28",
+        "surgery_center_out": "10:33",
+        "moraga_subdivision_out": "10:36",
+        "utc": "10:43",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "10:52",
+        "g_st_south_raleys_in": "10:55",
+        "surgery_center_in": "11:00",
+        "moraga_subdivision_in": "11:03"
+      }
+    },
+    {
+      "trip_id": 3,
+      "times": {
+        "mercy_hospital_out": "11:19",
+        "g_st_south_raleys": "11:22",
+        "surgery_center_out": "11:27",
+        "moraga_subdivision_out": "11:30",
+        "utc": "11:37",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "11:46",
+        "g_st_south_raleys_in": "11:49",
+        "surgery_center_in": "11:54",
+        "moraga_subdivision_in": "11:57"
+      }
+    },
+    {
+      "trip_id": 4,
+      "times": {
+        "mercy_hospital_out": "12:13",
+        "g_st_south_raleys": "12:16",
+        "surgery_center_out": "12:21",
+        "moraga_subdivision_out": "12:24",
+        "utc": "12:31",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "12:40",
+        "g_st_south_raleys_in": "12:43",
+        "surgery_center_in": "12:48",
+        "moraga_subdivision_in": "12:51"
+      }
+    },
+    {
+      "trip_id": 5,
+      "times": {
+        "mercy_hospital_out": "1:07",
+        "g_st_south_raleys": "1:10",
+        "surgery_center_out": "1:15",
+        "moraga_subdivision_out": "1:18",
+        "utc": "1:25",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "1:49",
+        "g_st_south_raleys_in": "1:52",
+        "surgery_center_in": "1:57",
+        "moraga_subdivision_in": "2:00"
+      }
+    },
+    {
+      "trip_id": 6,
+      "times": {
+        "mercy_hospital_out": "2:16",
+        "g_st_south_raleys": "2:19",
+        "surgery_center_out": "2:24",
+        "moraga_subdivision_out": "2:27",
+        "utc": "2:34",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "2:43",
+        "g_st_south_raleys_in": "2:46",
+        "surgery_center_in": "2:51",
+        "moraga_subdivision_in": "2:54"
+      }
+    },
+    {
+      "trip_id": 7,
+      "times": {
+        "mercy_hospital_out": "3:10",
+        "g_st_south_raleys": "3:13",
+        "surgery_center_out": "3:18",
+        "moraga_subdivision_out": "3:21",
+        "utc": "3:35",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "3:52",
+        "g_st_south_raleys_in": "3:55",
+        "surgery_center_in": "4:00",
+        "moraga_subdivision_in": "4:03"
+      }
+    },
+    {
+      "trip_id": 8,
+      "times": {
+        "mercy_hospital_out": "4:24",
+        "g_st_south_raleys": "4:27",
+        "surgery_center_out": "4:32",
+        "moraga_subdivision_out": "4:35",
+        "utc": "4:42",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "4:51",
+        "g_st_south_raleys_in": "4:54",
+        "surgery_center_in": "4:59",
+        "moraga_subdivision_in": "5:02"
+      }
+    },
+    {
+      "trip_id": 9,
+      "times": {
+        "mercy_hospital_out": "5:18",
+        "g_st_south_raleys": "5:21",
+        "surgery_center_out": "5:26",
+        "moraga_subdivision_out": "5:29",
+        "utc": "5:36",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "5:45",
+        "g_st_south_raleys_in": "5:48",
+        "surgery_center_in": "5:53",
+        "moraga_subdivision_in": "5:56"
+      }
+    },
+    {
+      "trip_id": 10,
+      "times": {
+        "mercy_hospital_out": "6:27",
+        "g_st_south_raleys": "6:30",
+        "surgery_center_out": "6:35",
+        "moraga_subdivision_out": "6:38",
+        "utc": "6:45",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "6:54",
+        "g_st_south_raleys_in": "6:57",
+        "surgery_center_in": "7:02",
+        "moraga_subdivision_in": "7:05"
+      }
+    },
+    {
+      "trip_id": 11,
+      "times": {
+        "mercy_hospital_out": "7:21",
+        "g_st_south_raleys": "7:24",
+        "surgery_center_out": "7:29",
+        "moraga_subdivision_out": "7:32",
+        "utc": "7:39",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "7:48",
+        "g_st_south_raleys_in": "7:51",
+        "surgery_center_in": "7:56",
+        "moraga_subdivision_in": "7:59"
+      }
+    },
+    {
+      "trip_id": 12,
+      "times": {
+        "mercy_hospital_out": "8:15",
+        "g_st_south_raleys": "8:18",
+        "surgery_center_out": "8:23",
+        "moraga_subdivision_out": "8:26",
+        "utc": "8:33",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "8:42",
+        "g_st_south_raleys_in": "8:45",
+        "surgery_center_in": "8:50",
+        "moraga_subdivision_in": "8:53"
+      }
+    },
+    {
+      "trip_id": 13,
+      "times": {
+        "mercy_hospital_out": "9:09",
+        "g_st_south_raleys": "9:12",
+        "surgery_center_out": "9:17",
+        "moraga_subdivision_out": "9:20",
+        "utc": "9:42",
+        "foothill_dr_in": "REQ",
+        "mercy_hospital_in": "9:51",
+        "g_st_south_raleys_in": "9:54",
+        "surgery_center_in": "9:59",
+        "moraga_subdivision_in": "10:02"
+      }
+    }
+  ],
+  "notes": [
+    "Times shown are departure times for all stops except the UTC arrival time, completing the loop.",
+    "Route operates Monday - Friday during Fall 2025 semester.",
+    "All stops in the **Inbound** segment (Foothill Dr. through Moraga Subdivision) are designated as **Request Stops (REQ)**."
+  ]
+}

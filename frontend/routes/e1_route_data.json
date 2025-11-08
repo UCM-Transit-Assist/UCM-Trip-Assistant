@@ -1,0 +1,305 @@
+{
+  "route": "E-1",
+  "semester": "Fall 2025",
+  "days": "Saturday - Sunday",
+  "direction": "UTC South",
+  "stops": [
+    {
+      "id": "utc",
+      "name": "University Transit Center (UTC)",
+      "address": "5200 North Lake Road, Merced, CA 95343",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.361474228296544, 
+        "lng": -120.4281067381593
+      },
+      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+    },
+    {
+      "id": "g_st_south_raleys",
+      "name": "G St. South (Raley's)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33122252300574, 
+        "lng": -120.46916283765779
+      },
+      "aliases": ["G Street Raley's", "Raley's"]
+    },
+    {
+      "id": "amtrak_station",
+      "name": "Amtrak Station",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.3069, 
+        "lng": -120.4767
+      },
+      "aliases": ["Amtrak", "Train Station"]
+    },
+    {
+      "id": "k_st_18th_19th",
+      "name": "K St. & 18th St. & 19th St.",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.302882013450784, 
+        "lng": -120.48070098950147
+      },
+      "aliases": ["K and 18th", "Downtown"]
+    },
+    {   
+      "id": "loughborough_walmart",
+      "name": "Loughborough Dr. (Walmart)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.31694459001208, 
+        "lng": -120.49911210568531
+      },
+      "aliases": ["Walmart", "Loughborough Walmart"]
+    },
+    {
+      "id": "meadows_ave_olivewood_foodmaxx",
+      "name": "Meadows Ave. & Olivewood Dr. (Foodmaxx)",
+      "type": "regular",
+      "aliases": ["Foodmaxx", "Olivewood"]
+    },
+    {
+      "id": "merced_mall_target",
+      "name": "Merced Mall/Target",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.323339383225814, 
+        "lng": -120.48556500410109
+      },
+      "aliases": ["Merced Mall", "Target", "Shopping center"]
+    },
+    {
+      "id": "rite_aid_walgreens",
+      "name": "Rite Aid / Walgreens",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.31970607555082,
+        "lng": -120.46913797409276
+      },
+      "aliases": ["Rite Aid", "Walgreens", "Pharmacy stop"]
+    },
+    {
+      "id": "yosemite_crossings_shopping_center",
+      "name": "Yosemite Crossings Shopping Center",
+      "type": "regular",
+       "coordinates": {
+        "lat": 37.33262785102364,
+        "lng": -120.46897538162821
+      },
+      "aliases": ["Yosemite Crossings"]
+    }
+  ],
+  "schedule": [
+    {
+      "trip_id": 1,
+      "times": {
+        "utc": "8:30",
+        "g_st_south_raleys": "8:39",
+        "amtrak_station": "8:46",
+        "k_st_18th_19th": "8:48",
+        "loughborough_walmart": "9:01",
+        "meadows_ave_olivewood_foodmaxx": "9:03",
+        "merced_mall_target": "9:07",
+        "rite_aid_walgreens": "9:14",
+        "yosemite_crossings_shopping_center": "9:18"
+      }
+    },
+    {
+      "trip_id": 2,
+      "times": {
+        "utc": "9:42",
+        "g_st_south_raleys": "9:51",
+        "amtrak_station": "9:58",
+        "k_st_18th_19th": "10:00",
+        "loughborough_walmart": "10:13",
+        "meadows_ave_olivewood_foodmaxx": "10:15",
+        "merced_mall_target": "10:19",
+        "rite_aid_walgreens": "10:26",
+        "yosemite_crossings_shopping_center": "10:30"
+      }
+    },
+    {
+      "trip_id": 3,
+      "times": {
+        "utc": "10:39",
+        "g_st_south_raleys": "10:48",
+        "amtrak_station": "10:55",
+        "k_st_18th_19th": "10:57",
+        "loughborough_walmart": "11:10",
+        "meadows_ave_olivewood_foodmaxx": "11:12",
+        "merced_mall_target": "11:16",
+        "rite_aid_walgreens": "11:23",
+        "yosemite_crossings_shopping_center": "11:27"
+      }
+    },
+    {
+      "trip_id": 4,
+      "times": {
+        "utc": "11:51",
+        "g_st_south_raleys": "12:00",
+        "amtrak_station": "12:07",
+        "k_st_18th_19th": "12:09",
+        "loughborough_walmart": "12:22",
+        "meadows_ave_olivewood_foodmaxx": "12:24",
+        "merced_mall_target": "12:28",
+        "rite_aid_walgreens": "12:35",
+        "yosemite_crossings_shopping_center": "12:39"
+      }
+    },
+    {
+      "trip_id": 5,
+      "times": {
+        "utc": "12:48",
+        "g_st_south_raleys": "12:57",
+        "amtrak_station": "1:04",
+        "k_st_18th_19th": "1:06",
+        "loughborough_walmart": "1:19",
+        "meadows_ave_olivewood_foodmaxx": "1:21",
+        "merced_mall_target": "1:25",
+        "rite_aid_walgreens": "1:32",
+        "yosemite_crossings_shopping_center": "1:36"
+      }
+    },
+    {
+      "trip_id": 6,
+      "times": {
+        "utc": "2:00",
+        "g_st_south_raleys": "2:09",
+        "amtrak_station": "2:16",
+        "k_st_18th_19th": "2:18",
+        "loughborough_walmart": "2:31",
+        "meadows_ave_olivewood_foodmaxx": "2:33",
+        "merced_mall_target": "2:37",
+        "rite_aid_walgreens": "2:44",
+        "yosemite_crossings_shopping_center": "2:48"
+      }
+    },
+    {
+      "trip_id": 7,
+      "times": {
+        "utc": "2:57",
+        "g_st_south_raleys": "3:06",
+        "amtrak_station": "3:13",
+        "k_st_18th_19th": "3:15",
+        "loughborough_walmart": "3:28",
+        "meadows_ave_olivewood_foodmaxx": "3:30",
+        "merced_mall_target": "3:34",
+        "rite_aid_walgreens": "3:41",
+        "yosemite_crossings_shopping_center": "3:45"
+      }
+    },
+    {
+      "trip_id": 8,
+      "times": {
+        "utc": "3:54",
+        "g_st_south_raleys": "4:03",
+        "amtrak_station": "4:10",
+        "k_st_18th_19th": "4:15",
+        "loughborough_walmart": "4:28",
+        "meadows_ave_olivewood_foodmaxx": "4:30",
+        "merced_mall_target": "4:34",
+        "rite_aid_walgreens": "4:41",
+        "yosemite_crossings_shopping_center": "4:45"
+      }
+    },
+    {
+      "trip_id": 9,
+      "times": {
+        "utc": "4:54",
+        "g_st_south_raleys": "5:03",
+        "amtrak_station": "5:10",
+        "k_st_18th_19th": "5:12",
+        "loughborough_walmart": "5:25",
+        "meadows_ave_olivewood_foodmaxx": "5:27",
+        "merced_mall_target": "5:31",
+        "rite_aid_walgreens": "5:38",
+        "yosemite_crossings_shopping_center": "5:42"
+      }
+    },
+    {
+      "trip_id": 10,
+      "times": {
+        "utc": "6:06",
+        "g_st_south_raleys": "6:15",
+        "amtrak_station": "6:22",
+        "k_st_18th_19th": "6:24",
+        "loughborough_walmart": "6:37",
+        "meadows_ave_olivewood_foodmaxx": "6:39",
+        "merced_mall_target": "6:43",
+        "rite_aid_walgreens": "6:50",
+        "yosemite_crossings_shopping_center": "6:54"
+      }
+    },
+    {
+      "trip_id": 11,
+      "times": {
+        "utc": "7:03",
+        "g_st_south_raleys": "7:12",
+        "amtrak_station": "7:19",
+        "k_st_18th_19th": "7:21",
+        "loughborough_walmart": "7:34",
+        "meadows_ave_olivewood_foodmaxx": "7:36",
+        "merced_mall_target": "7:40",
+        "rite_aid_walgreens": "7:47",
+        "yosemite_crossings_shopping_center": "7:51"
+      }
+    },
+    {
+      "trip_id": 12,
+      "times": {
+        "utc": "8:00",
+        "g_st_south_raleys": "8:09",
+        "amtrak_station": "8:16",
+        "k_st_18th_19th": "8:18",
+        "loughborough_walmart": "8:31",
+        "meadows_ave_olivewood_foodmaxx": "8:33",
+        "merced_mall_target": "8:37",
+        "rite_aid_walgreens": "8:44",
+        "yosemite_crossings_shopping_center": "8:48"
+      }
+    },
+    {
+      "trip_id": 13,
+      "times": {
+        "utc": "9:12",
+        "g_st_south_raleys": "9:21",
+        "amtrak_station": "9:28",
+        "k_st_18th_19th": "9:30",
+        "loughborough_walmart": "9:43",
+        "meadows_ave_olivewood_foodmaxx": "9:45",
+        "merced_mall_target": "9:49",
+        "rite_aid_walgreens": "9:56",
+        "yosemite_crossings_shopping_center": "10:00"
+      }
+    },
+    {
+      "trip_id": 14,
+      "times": {
+        "utc": "10:09",
+        "g_st_south_raleys": "10:18",
+        "amtrak_station": "10:25",
+        "k_st_18th_19th": "10:27",
+        "loughborough_walmart": "10:40",
+        "meadows_ave_olivewood_foodmaxx": "10:42",
+        "merced_mall_target": "10:46",
+        "rite_aid_walgreens": "10:53",
+        "yosemite_crossings_shopping_center": "10:57"
+      }
+    },
+    {
+      "trip_id": 15,
+      "times": {
+        "utc": "11:06"
+      },
+      "note": "Final trip of the day, departing UTC at 11:06 PM. All stops after K St & 18th St & 19th St are 'Drop off only' after 10:27 PM."
+    }
+  ],
+  "notes": [
+    "Times shown are departure times",
+    "Route operates Saturday and Sunday during Fall 2025 semester",
+    "Stops after K St. & 18th St. & 19th St. are 'Drop off only' on the final trip of the day"
+  ]
+}

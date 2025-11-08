@@ -1,0 +1,318 @@
+{
+  "route": "FastCat 2",
+  "semester": "Fall 2025",
+  "days": "Monday - Friday",
+  "direction": "Full Loop",
+  "stops": [
+    {
+      "id": "surgery_center_out",
+      "name": "University Surgery Center (Outbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33206692224449, 
+        "lng": -120.45170888044021
+      },
+      "aliases": ["Surgery Center", "University Surgical Center"]
+    },
+    {
+      "id": "the_promenade",
+      "name": "The Promenade",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.332145060433746, 
+        "lng": -120.46077891186155
+      },
+      "aliases": ["Promenade", "Promenade Center", "Shopping center"]
+    },
+    {
+      "id": "yosemite_crossings_shopping_center",
+      "name": "Yosemite Crossings Shopping Center",
+      "type": "regular",
+       "coordinates": {
+        "lat": 37.33262785102364,
+        "lng": -120.46897538162821
+      },
+      "aliases": ["Yosemite Crossings"]
+    },
+    {
+      "id": "mercy_hospital_out",
+      "name": "Mercy Hospital / Tri-College (Outbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33592289641405,
+        "lng": -120.46921339719248
+      },
+      "aliases": ["Mercy Hospital", "Tri-College Out"]
+    },
+    {
+      "id": "cardella_m_st",
+      "name": "Cardella Rd. & M St.",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.34700229178098,
+        "lng": -120.47735909884848
+      },
+      "aliases": ["Cardella and M Street"]
+    },
+    {
+      "id": "bellevue_ranch",
+      "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.35819362169281,
+        "lng": -120.47706519779813
+      },
+      "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
+    },
+    {
+      "id": "mercy_hospital_in",
+      "name": "Tri-College / Mercy Hospital (Inbound)",
+      "coordinates": {
+        "lat": 37.33592289641405,
+        "lng": -120.46921339719248
+      },
+      "type": "request",
+      "aliases": ["Tri-College In", "Mercy Hospital In"]
+    },
+    {
+      "id": "yosemite_cordova_physician_center",
+      "name": "Yosemite & Cordova (Merced Physician Center)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33208055065915, 
+        "lng": -120.46282757709808
+      },
+      "aliases": ["Yosemite and Cordova", "Merced Physician Center"]
+    },
+    {
+      "id": "surgery_center_in",
+      "name": "University Surgery Center (Inbound)",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33206692224449, 
+        "lng": -120.45170888044021
+      },
+      "aliases": ["Surgery Center In"]
+    },
+    {
+      "id": "moraga_subdivision",
+      "name": "Moraga Subdivision",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.33209113947716, 
+        "lng": -120.43779646780489
+      },
+      "aliases": ["Moraga"]
+    },
+    {
+      "id": "utc",
+      "name": "University Transit Center (UTC)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.361474228296544, 
+        "lng": -120.4281067381593
+      },
+      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+    }
+  ],
+  "schedule": [
+    {
+      "trip_id": 1,
+      "times": {
+        "surgery_center_out": "8:30",
+        "wingstop_promenade": "8:34",
+        "yosemite_crossings": "8:37",
+        "mercy_hospital_out": "8:39",
+        "cardella_m_st": "8:43",
+        "m_st_bellevue_ranch": "8:47",
+        "mercy_hospital_in": "9:08",
+        "yosemite_cordova": "9:11",
+        "surgery_center_in": "9:14",
+        "moraga_subdivision": "9:17",
+        "utc_arrival": "9:25"
+      }
+    },
+    {
+      "trip_id": 2,
+      "times": {
+        "surgery_center_out": "9:34",
+        "wingstop_promenade": "9:38",
+        "yosemite_crossings": "9:41",
+        "mercy_hospital_out": "9:43",
+        "cardella_m_st": "9:47",
+        "m_st_bellevue_ranch": "9:51",
+        "mercy_hospital_in": "10:27",
+        "yosemite_cordova": "10:30",
+        "surgery_center_in": "10:33",
+        "moraga_subdivision": "10:36",
+        "utc_arrival": "10:44"
+      }
+    },
+    {
+      "trip_id": 3,
+      "times": {
+        "surgery_center_out": "10:53",
+        "wingstop_promenade": "10:57",
+        "yosemite_crossings": "11:00",
+        "mercy_hospital_out": "11:02",
+        "cardella_m_st": "11:06",
+        "m_st_bellevue_ranch": "11:10",
+        "mercy_hospital_in": "11:31",
+        "yosemite_cordova": "11:34",
+        "surgery_center_in": "11:37",
+        "moraga_subdivision": "11:40",
+        "utc_arrival": "11:57"
+      }
+    },
+    {
+      "trip_id": 4,
+      "times": {
+        "surgery_center_out": "11:57",
+        "wingstop_promenade": "12:01",
+        "yosemite_crossings": "12:04",
+        "mercy_hospital_out": "12:06",
+        "cardella_m_st": "12:10",
+        "m_st_bellevue_ranch": "12:14",
+        "mercy_hospital_in": "12:35",
+        "yosemite_cordova": "12:38",
+        "surgery_center_in": "12:41",
+        "moraga_subdivision": "12:44",
+        "utc_arrival": "1:01"
+      }
+    },
+    {
+      "trip_id": 5,
+      "times": {
+        "surgery_center_out": "1:01",
+        "wingstop_promenade": "1:05",
+        "yosemite_crossings": "1:08",
+        "mercy_hospital_out": "1:10",
+        "cardella_m_st": "1:14",
+        "m_st_bellevue_ranch": "1:18",
+        "mercy_hospital_in": "1:39",
+        "yosemite_cordova": "1:42",
+        "surgery_center_in": "1:45",
+        "moraga_subdivision": "1:48",
+        "utc_arrival": "2:20"
+      }
+    },
+    {
+      "trip_id": 6,
+      "times": {
+        "surgery_center_out": "2:20",
+        "wingstop_promenade": "2:24",
+        "yosemite_crossings": "2:27",
+        "mercy_hospital_out": "2:29",
+        "cardella_m_st": "2:33",
+        "m_st_bellevue_ranch": "2:37",
+        "mercy_hospital_in": "2:58",
+        "yosemite_cordova": "3:01",
+        "surgery_center_in": "3:04",
+        "moraga_subdivision": "3:07",
+        "utc_arrival": "3:24"
+      }
+    },
+    {
+      "trip_id": 7,
+      "times": {
+        "surgery_center_out": "3:24",
+        "wingstop_promenade": "3:28",
+        "yosemite_crossings": "3:31",
+        "mercy_hospital_out": "3:33",
+        "cardella_m_st": "3:37",
+        "m_st_bellevue_ranch": "3:41",
+        "mercy_hospital_in": "4:02",
+        "yosemite_cordova": "4:05",
+        "surgery_center_in": "4:08",
+        "moraga_subdivision": "4:11",
+        "utc_arrival": "4:31"
+      }
+    },
+    {
+      "trip_id": 8,
+      "times": {
+        "surgery_center_out": "4:31",
+        "wingstop_promenade": "4:35",
+        "yosemite_crossings": "4:38",
+        "mercy_hospital_out": "4:40",
+        "cardella_m_st": "4:44",
+        "m_st_bellevue_ranch": "4:48",
+        "mercy_hospital_in": "5:09",
+        "yosemite_cordova": "5:12",
+        "surgery_center_in": "5:15",
+        "moraga_subdivision": "5:18",
+        "utc_arrival": "5:50"
+      }
+    },
+    {
+      "trip_id": 9,
+      "times": {
+        "surgery_center_out": "5:50",
+        "wingstop_promenade": "5:54",
+        "yosemite_crossings": "5:57",
+        "mercy_hospital_out": "5:59",
+        "cardella_m_st": "6:03",
+        "m_st_bellevue_ranch": "6:07",
+        "mercy_hospital_in": "6:28",
+        "yosemite_cordova": "6:31",
+        "surgery_center_in": "6:34",
+        "moraga_subdivision": "6:37",
+        "utc_arrival": "6:54"
+      }
+    },
+    {
+      "trip_id": 10,
+      "times": {
+        "surgery_center_out": "6:54",
+        "wingstop_promenade": "6:58",
+        "yosemite_crossings": "7:01",
+        "mercy_hospital_out": "7:03",
+        "cardella_m_st": "7:07",
+        "m_st_bellevue_ranch": "7:11",
+        "mercy_hospital_in": "7:32",
+        "yosemite_cordova": "7:35",
+        "surgery_center_in": "7:38",
+        "moraga_subdivision": "7:41",
+        "utc_arrival": "8:13"
+      }
+    },
+    {
+      "trip_id": 11,
+      "times": {
+        "surgery_center_out": "8:13",
+        "wingstop_promenade": "8:17",
+        "yosemite_crossings": "8:20",
+        "mercy_hospital_out": "8:22",
+        "cardella_m_st": "8:26",
+        "m_st_bellevue_ranch": "8:30",
+        "mercy_hospital_in": "8:51",
+        "yosemite_cordova": "8:54",
+        "surgery_center_in": "8:57",
+        "moraga_subdivision": "9:00",
+        "utc_arrival": "9:17"
+      }
+    },
+    {
+      "trip_id": 12,
+      "times": {
+        "surgery_center_out": "9:17",
+        "wingstop_promenade": "9:21",
+        "yosemite_crossings": "9:24",
+        "mercy_hospital_out": "9:26",
+        "cardella_m_st": "9:30",
+        "m_st_bellevue_ranch": "9:34",
+        "mercy_hospital_in": "N/A (REQ)",
+        "yosemite_cordova": "N/A (REQ)",
+        "surgery_center_in": "N/A (REQ)",
+        "moraga_subdivision": "N/A (REQ)",
+        "utc_arrival": "9:45"
+      },
+      "note": "Final trip of the day. Inbound times not explicitly listed but route proceeds to final UTC arrival."
+    }
+  ],
+  "notes": [
+    "Times shown are departure times for all stops except the final UTC time, which is the arrival time, completing the loop.",
+    "Route operates Monday - Friday during Fall 2025 semester.",
+    "All stops in the **Inbound** segment (Tri-College / Mercy Hospital to Moraga Subdivision) are designated as **Request Stops (REQ)**."
+  ]
+}

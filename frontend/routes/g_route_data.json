@@ -1,0 +1,310 @@
+{
+  "route": "G-Line",
+  "semester": "Fall 2025",
+  "days": "Monday - Friday",
+  "direction": "Full Loop",
+  "stops": [
+    {
+      "id": "r_st_village_apartments",
+      "name": "R St. Village Apartments",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.3353892801684,
+        "lng": -120.48620154189464
+      },
+      "aliases": ["R St. Village", "R Street Villages"]
+    },
+    {
+      "id": "el_redondo_dr_jenner",
+      "name": "El Redondo Dr. (Bus Stop - Jenner Dr.)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.334306934412254,
+        "lng": -120.49517202681443
+      },
+      "aliases": ["El Redondo"]
+    },
+    {
+      "id": "compass_pointe_apartments",
+      "name": "Compass Pointe Apartments (Bus Stop - Pacific Dr.)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.335643118410694,
+        "lng": -120.4901933545145
+      },
+      "aliases": ["Compass Pointe"]
+    },
+    {
+      "id": "merced_college_bus_terminal",
+      "name": "Merced College The Bus Terminal",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33461583065569,
+        "lng": -120.47797758441399
+      },
+      "aliases": ["Merced College"]
+    },
+    {
+      "id": "bellevue_ranch",
+      "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.35819362169281,
+        "lng": -120.47706519779813
+      },
+      "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
+    },
+    {
+      "id": "utc",
+      "name": "University Transit Center (UTC)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.361474228296544, 
+        "lng": -120.4281067381593
+      },
+      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+    },
+    {
+      "id": "amtrak_station",
+      "name": "Amtrak Station",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.3069, 
+        "lng": -120.4767
+      },
+      "aliases": ["Amtrak", "Train Station"]
+    },
+    {
+      "id": "k_st_18th_19th",
+      "name": "K St. & 18th St. & 19th St.",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.302882013450784, 
+        "lng": -120.48070098950147
+      },
+      "aliases": ["K and 18th", "Downtown"]
+    },
+    {
+      "id": "downtown_campus_center",
+      "name": "UC Merced Downtown Campus Center",
+      "coordinates": {
+        "lat": 37.30374250585166, 
+        "lng": -120.48556763686958
+      },
+      "type": "regular",
+      "aliases": ["Downtown Center"]
+    },
+    {
+     "id": "merced_transpo",
+      "name": "Merced Transpo",
+      "type": "request",
+      "coordinates": {
+        "lat": 37.3016, 
+        "lng": -120.4875
+      },
+      "aliases": ["Merced Transportation Center", "Greyhound", "Greyhound Bus Station"]
+    }
+  ],
+  "schedule": [
+    {
+      "trip_id": 1,
+      "times": {
+        "r_st_village_apts": "6:30",
+        "el_redondo_dr": "6:33",
+        "compass_pointe_apts": "6:35",
+        "merced_college_terminal": "6:40",
+        "m_st_bellevue_ranch": "6:46",
+        "utc_campus": "6:57",
+        "amtrak_station": "7:18",
+        "k_st_18th_19th": "7:20",
+        "downtown_campus_center": "7:22",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 2,
+      "times": {
+        "r_st_village_apts": "7:38",
+        "el_redondo_dr": "7:41",
+        "compass_pointe_apts": "7:43",
+        "merced_college_terminal": "7:48",
+        "m_st_bellevue_ranch": "7:54",
+        "utc_campus": "8:20",
+        "amtrak_station": "8:41",
+        "k_st_18th_19th": "8:43",
+        "downtown_campus_center": "8:45",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 3,
+      "times": {
+        "r_st_village_apts": "9:01",
+        "el_redondo_dr": "9:04",
+        "compass_pointe_apts": "9:06",
+        "merced_college_terminal": "9:11",
+        "m_st_bellevue_ranch": "9:17",
+        "utc_campus": "9:28",
+        "amtrak_station": "9:49",
+        "k_st_18th_19th": "9:51",
+        "downtown_campus_center": "9:53",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 4,
+      "times": {
+        "r_st_village_apts": "10:09",
+        "el_redondo_dr": "10:12",
+        "compass_pointe_apts": "10:14",
+        "merced_college_terminal": "10:19",
+        "m_st_bellevue_ranch": "10:25",
+        "utc_campus": "10:36",
+        "amtrak_station": "10:57",
+        "k_st_18th_19th": "10:59",
+        "downtown_campus_center": "11:01",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 5,
+      "times": {
+        "r_st_village_apts": "11:17",
+        "el_redondo_dr": "11:20",
+        "compass_pointe_apts": "11:22",
+        "merced_college_terminal": "11:27",
+        "m_st_bellevue_ranch": "11:33",
+        "utc_campus": "11:44",
+        "amtrak_station": "12:05",
+        "k_st_18th_19th": "12:07",
+        "downtown_campus_center": "12:09",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 6,
+      "times": {
+        "r_st_village_apts": "12:25",
+        "el_redondo_dr": "12:28",
+        "compass_pointe_apts": "12:30",
+        "merced_college_terminal": "12:35",
+        "m_st_bellevue_ranch": "12:41",
+        "utc_campus": "1:07",
+        "amtrak_station": "1:28",
+        "k_st_18th_19th": "1:30",
+        "downtown_campus_center": "1:32",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 7,
+      "times": {
+        "r_st_village_apts": "1:48",
+        "el_redondo_dr": "1:51",
+        "compass_pointe_apts": "1:53",
+        "merced_college_terminal": "1:58",
+        "m_st_bellevue_ranch": "2:04",
+        "utc_campus": "2:15",
+        "amtrak_station": "2:36",
+        "k_st_18th_19th": "2:43",
+        "downtown_campus_center": "2:45",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 8,
+      "times": {
+        "r_st_village_apts": "3:01",
+        "el_redondo_dr": "3:04",
+        "compass_pointe_apts": "3:06",
+        "merced_college_terminal": "3:11",
+        "m_st_bellevue_ranch": "3:17",
+        "utc_campus": "3:28",
+        "amtrak_station": "3:49",
+        "k_st_18th_19th": "3:51",
+        "downtown_campus_center": "3:53",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 9,
+      "times": {
+        "r_st_village_apts": "4:09",
+        "el_redondo_dr": "4:12",
+        "compass_pointe_apts": "4:14",
+        "merced_college_terminal": "4:19",
+        "m_st_bellevue_ranch": "4:25",
+        "utc_campus": "4:51",
+        "amtrak_station": "5:12",
+        "k_st_18th_19th": "5:14",
+        "downtown_campus_center": "5:16",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 10,
+      "times": {
+        "r_st_village_apts": "5:32",
+        "el_redondo_dr": "5:35",
+        "compass_pointe_apts": "5:37",
+        "merced_college_terminal": "5:42",
+        "m_st_bellevue_ranch": "5:48",
+        "utc_campus": "5:59",
+        "amtrak_station": "6:20",
+        "k_st_18th_19th": "6:22",
+        "downtown_campus_center": "6:24",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 11,
+      "times": {
+        "r_st_village_apts": "6:40",
+        "el_redondo_dr": "6:43",
+        "compass_pointe_apts": "6:45",
+        "merced_college_terminal": "6:50",
+        "m_st_bellevue_ranch": "6:56",
+        "utc_campus": "7:07",
+        "amtrak_station": "7:28",
+        "k_st_18th_19th": "7:30",
+        "downtown_campus_center": "7:32",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 12,
+      "times": {
+        "r_st_village_apts": "7:48",
+        "el_redondo_dr": "7:51",
+        "compass_pointe_apts": "7:53",
+        "merced_college_terminal": "7:58",
+        "m_st_bellevue_ranch": "8:04",
+        "utc_campus": "8:30",
+        "amtrak_station": "8:51",
+        "k_st_18th_19th": "8:53",
+        "downtown_campus_center": "8:55",
+        "merced_transpo": "REQ"
+      }
+    },
+    {
+      "trip_id": 13,
+      "times": {
+        "r_st_village_apts": "9:11",
+        "el_redondo_dr": "9:14",
+        "compass_pointe_apts": "9:16",
+        "merced_college_terminal": "9:21",
+        "m_st_bellevue_ranch": "9:27",
+        "utc_campus": "9:38",
+        "amtrak_station": "9:59",
+        "k_st_18th_19th": "10:01",
+        "downtown_campus_center": "10:03",
+        "merced_transpo": "REQ"
+      }
+    }
+  ],
+  "notes": [
+    "Times shown for all stops are **departure times** for the Fall 2025 semester.",
+    "Route operates **Monday - Friday**.",
+    "The final stop, **Merced Transpo**, is designated as a **Request Stop (REQ)**."
+  ]
+}

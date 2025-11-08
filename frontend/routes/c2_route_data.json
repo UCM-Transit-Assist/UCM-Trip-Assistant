@@ -1,0 +1,404 @@
+{
+  "route": "C-2",
+  "semester": "Fall 2025",
+  "days": "Monday - Friday",
+  "direction": "UTC North / South",
+  "stops": [
+    {
+      "id": "r_st_village_apartments",
+      "name": "R St. Village Apartments",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.3353892801684,
+        "lng": -120.48620154189464
+      },
+      "aliases": ["R St. Village", "R Street Villages"]
+    },
+    {
+      "id": "el_redondo_dr_jenner",
+      "name": "El Redondo Dr. (Bus Stop - Jenner Dr.)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.334306934412254,
+        "lng": -120.49517202681443
+      },
+      "aliases": ["El Redondo"]
+    },
+    {
+      "id": "compass_pointe_apartments",
+      "name": "Compass Pointe Apartments (Bus Stop - Pacific Dr.)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.335643118410694,
+        "lng": -120.4901933545145
+      },
+      "aliases": ["Compass Pointe"]
+    },
+    {
+      "id": "buena_vista_dr",
+      "name": "Buena Vista Dr.",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.326283037411926, 
+        "lng":  -120.50247195729435
+      }
+    },
+    {
+      "id": "merced_mall_target",
+      "name": "Merced Mall/Target",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.323339383225814, 
+        "lng": -120.48556500410109
+      },
+      "aliases": ["Merced Mall", "Target", "Shopping center"]
+    },
+    {
+      "id": "m_st_village_apartments",
+      "name": "M St. Village Apartments",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.32404870112836, 
+        "lng": -120.47828234149318
+      },
+      "aliases": ["M Street Village"]
+    },
+    {
+      "id": "merced_college_bus_terminal",
+      "name": "Merced College The Bus Terminal",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.33461583065569,
+        "lng": -120.47797758441399
+      },
+      "aliases": ["Merced College"]
+    },
+    {
+      "id": "cardella_m_st_north",
+      "name": "Cardella Rd. & M St. (Northbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.34616207850856,
+        "lng": -120.47765806600826
+      },
+      "aliases": ["Cardella North"],
+      "direction": "northbound"
+    },
+    {
+      "id": "bellevue_ranch",
+      "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.35819362169281,
+        "lng": -120.47706519779813
+      },
+      "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
+    },
+    {
+      "id": "utc",
+      "name": "University Transit Center (UTC)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.361474228296544, 
+        "lng": -120.4281067381593
+      },
+      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+    },
+    {
+      "id": "foothill_dr",
+      "name": "Foothill Dr.",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.3535394228369,
+        "lng": -120.46894870537594
+      },
+      "direction": "southbound"
+    },
+    {
+      "id": "cardella_m_st_south",
+      "name": "Cardella Rd. & M St. (Southbound)",
+      "type": "regular",
+      "coordinates": {
+        "lat": 37.34616207850856,
+        "lng": -120.47765806600826
+      },
+      "aliases": ["Cardella South"],
+      "direction": "southbound"
+    }
+  ],
+  "schedule": [
+    {
+      "trip_id": 1,
+      "times": {
+        "r_st_village_apartments": "6:20",
+        "el_redondo_dr_jenner": "6:23",
+        "compass_pointe_apartments": "6:25",
+        "buena_vista_dr": "6:32",
+        "merced_mall_target": "6:39",
+        "m_st_village_apartments": "6:41",
+        "merced_college_bus_terminal": "6:45",
+        "cardella_m_st_north": "6:48",
+        "bellevue_ranch": "6:51",
+        "utc": "7:02",
+        "foothill_dr": "7:09",
+        "cardella_m_st_south": "7:13",
+        "r_st_village_apartments": "7:18"
+      }
+    },
+    {
+      "trip_id": 2,
+      "times": {
+        "r_st_village_apartments": "7:18",
+        "el_redondo_dr_jenner": "7:21",
+        "compass_pointe_apartments": "7:23",
+        "buena_vista_dr": "7:30",
+        "merced_mall_target": "7:37",
+        "m_st_village_apartments": "7:39",
+        "merced_college_bus_terminal": "7:43",
+        "cardella_m_st_north": "7:46",
+        "bellevue_ranch": "7:49",
+        "utc": "8:15",
+        "foothill_dr": "8:22",
+        "cardella_m_st_south": "8:26",
+        "r_st_village_apartments": "8:31"
+      }
+    },
+    {
+      "trip_id": 3,
+      "times": {
+        "r_st_village_apartments": "8:31",
+        "el_redondo_dr_jenner": "8:34",
+        "compass_pointe_apartments": "8:36",
+        "buena_vista_dr": "8:43",
+        "merced_mall_target": "8:50",
+        "m_st_village_apartments": "8:52",
+        "merced_college_bus_terminal": "8:56",
+        "cardella_m_st_north": "8:59",
+        "bellevue_ranch": "9:02",
+        "utc": "9:13",
+        "foothill_dr": "9:20",
+        "cardella_m_st_south": "9:24",
+        "r_st_village_apartments": "9:29"
+      }
+    },
+    {
+      "trip_id": 4,
+      "times": {
+        "r_st_village_apartments": "9:29",
+        "el_redondo_dr_jenner": "9:32",
+        "compass_pointe_apartments": "9:34",
+        "buena_vista_dr": "9:41",
+        "merced_mall_target": "9:48",
+        "m_st_village_apartments": "9:50",
+        "merced_college_bus_terminal": "9:54",
+        "cardella_m_st_north": "9:57",
+        "bellevue_ranch": "10:00",
+        "utc": "10:26",
+        "foothill_dr": "10:33",
+        "cardella_m_st_south": "10:37",
+        "r_st_village_apartments": "10:42"
+      }
+    },
+    {
+      "trip_id": 5,
+      "times": {
+        "r_st_village_apartments": "10:42",
+        "el_redondo_dr_jenner": "10:45",
+        "compass_pointe_apartments": "10:47",
+        "buena_vista_dr": "10:54",
+        "merced_mall_target": "11:01",
+        "m_st_village_apartments": "11:03",
+        "merced_college_bus_terminal": "11:07",
+        "cardella_m_st_north": "11:10",
+        "bellevue_ranch": "11:13",
+        "utc": "11:24",
+        "foothill_dr": "11:31",
+        "cardella_m_st_south": "11:35",
+        "r_st_village_apartments": "11:40"
+      }
+    },
+    {
+      "trip_id": 6,
+      "times": {
+        "r_st_village_apartments": "11:40",
+        "el_redondo_dr_jenner": "11:43",
+        "compass_pointe_apartments": "11:45",
+        "buena_vista_dr": "11:52",
+        "merced_mall_target": "11:59",
+        "m_st_village_apartments": "12:01",
+        "merced_college_bus_terminal": "12:05",
+        "cardella_m_st_north": "12:08",
+        "bellevue_ranch": "12:11",
+        "utc": "12:37",
+        "foothill_dr": "12:44",
+        "cardella_m_st_south": "12:48",
+        "r_st_village_apartments": "12:53"
+      }
+    },
+    {
+      "trip_id": 7,
+      "times": {
+        "r_st_village_apartments": "12:53",
+        "el_redondo_dr_jenner": "12:56",
+        "compass_pointe_apartments": "12:58",
+        "buena_vista_dr": "1:05",
+        "merced_mall_target": "1:12",
+        "m_st_village_apartments": "1:14",
+        "merced_college_bus_terminal": "1:18",
+        "cardella_m_st_north": "1:21",
+        "bellevue_ranch": "1:24",
+        "utc": "1:35",
+        "foothill_dr": "1:42",
+        "cardella_m_st_south": "1:46",
+        "r_st_village_apartments": "1:51"
+      }
+    },
+    {
+      "trip_id": 8,
+      "times": {
+        "r_st_village_apartments": "1:51",
+        "el_redondo_dr_jenner": "1:54",
+        "compass_pointe_apartments": "1:56",
+        "buena_vista_dr": "2:03",
+        "merced_mall_target": "2:13",
+        "m_st_village_apartments": "2:15",
+        "merced_college_bus_terminal": "2:19",
+        "cardella_m_st_north": "2:22",
+        "bellevue_ranch": "2:25",
+        "utc": "2:36",
+        "foothill_dr": "2:43",
+        "cardella_m_st_south": "2:47",
+        "r_st_village_apartments": "2:52"
+      }
+    },
+    {
+      "trip_id": 9,
+      "times": {
+        "r_st_village_apartments": "2:52",
+        "el_redondo_dr_jenner": "2:55",
+        "compass_pointe_apartments": "2:57",
+        "buena_vista_dr": "3:04",
+        "merced_mall_target": "3:11",
+        "m_st_village_apartments": "3:13",
+        "merced_college_bus_terminal": "3:17",
+        "cardella_m_st_north": "3:20",
+        "bellevue_ranch": "3:23",
+        "utc": "3:34",
+        "foothill_dr": "3:41",
+        "cardella_m_st_south": "3:45",
+        "r_st_village_apartments": "3:50"
+      }
+    },
+    {
+      "trip_id": 10,
+      "times": {
+        "r_st_village_apartments": "3:50",
+        "el_redondo_dr_jenner": "3:53",
+        "compass_pointe_apartments": "3:55",
+        "buena_vista_dr": "4:02",
+        "merced_mall_target": "4:09",
+        "m_st_village_apartments": "4:11",
+        "merced_college_bus_terminal": "4:15",
+        "cardella_m_st_north": "4:18",
+        "bellevue_ranch": "4:21",
+        "utc": "4:47",
+        "foothill_dr": "4:54",
+        "cardella_m_st_south": "4:58",
+        "r_st_village_apartments": "5:03"
+      }
+    },
+    {
+      "trip_id": 11,
+      "times": {
+        "r_st_village_apartments": "5:03",
+        "el_redondo_dr_jenner": "5:06",
+        "compass_pointe_apartments": "5:08",
+        "buena_vista_dr": "5:15",
+        "merced_mall_target": "5:22",
+        "m_st_village_apartments": "5:24",
+        "merced_college_bus_terminal": "5:28",
+        "cardella_m_st_north": "5:31",
+        "bellevue_ranch": "5:34",
+        "utc": "5:45",
+        "foothill_dr": "5:52",
+        "cardella_m_st_south": "5:56",
+        "r_st_village_apartments": "6:01"
+      }
+    },
+    {
+      "trip_id": 12,
+      "times": {
+        "r_st_village_apartments": "6:01",
+        "el_redondo_dr_jenner": "6:04",
+        "compass_pointe_apartments": "6:06",
+        "buena_vista_dr": "6:13",
+        "merced_mall_target": "6:20",
+        "m_st_village_apartments": "6:22",
+        "merced_college_bus_terminal": "6:26",
+        "cardella_m_st_north": "6:29",
+        "bellevue_ranch": "6:32",
+        "utc": "6:58",
+        "foothill_dr": "7:05",
+        "cardella_m_st_south": "7:09",
+        "r_st_village_apartments": "7:14"
+      }
+    },
+    {
+      "trip_id": 13,
+      "times": {
+        "r_st_village_apartments": "7:14",
+        "el_redondo_dr_jenner": "7:17",
+        "compass_pointe_apartments": "7:19",
+        "buena_vista_dr": "7:26",
+        "merced_mall_target": "7:33",
+        "m_st_village_apartments": "7:35",
+        "merced_college_bus_terminal": "7:39",
+        "cardella_m_st_north": "7:42",
+        "bellevue_ranch": "7:45",
+        "utc": "7:56",
+        "foothill_dr": "8:03",
+        "cardella_m_st_south": "8:07",
+        "r_st_village_apartments": "8:12"
+      }
+    },
+    {
+      "trip_id": 14,
+      "times": {
+        "r_st_village_apartments": "8:12",
+        "el_redondo_dr_jenner": "8:15",
+        "compass_pointe_apartments": "8:17",
+        "buena_vista_dr": "8:24",
+        "merced_mall_target": "8:31",
+        "m_st_village_apartments": "8:33",
+        "merced_college_bus_terminal": "8:37",
+        "cardella_m_st_north": "8:40",
+        "bellevue_ranch": "8:43",
+        "utc": "9:09",
+        "foothill_dr": "9:16",
+        "cardella_m_st_south": "9:20",
+        "r_st_village_apartments": "9:25"
+      }
+    },
+    {
+      "trip_id": 15,
+      "times": {
+        "r_st_village_apartments": "9:25",
+        "el_redondo_dr_jenner": "9:28",
+        "compass_pointe_apartments": "9:30",
+        "buena_vista_dr": "9:37",
+        "merced_mall_target": "9:44",
+        "m_st_village_apartments": "9:46",
+        "merced_college_bus_terminal": "9:50",
+        "cardella_m_st_north": "9:53",
+        "bellevue_ranch": "9:56",
+        "utc": "10:07"
+      },
+      "note": "Final trip of the day."
+    }
+  ],
+  "notes": [
+    "Times shown are departure times",
+    "Route operates Monday through Friday during Fall 2025 semester",
+    "Stops marked with REQ are request-only (drop-off only)"
+  ]
+}
