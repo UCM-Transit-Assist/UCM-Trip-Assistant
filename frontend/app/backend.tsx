@@ -62,7 +62,20 @@ async function convertToLongitudeLatitude(address: string) {
 
 }
 
-// Find the nearest bus stop to a given location using Distance Matrix API
+// Calculate distance between two coordinates using Haversine formula
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 3959; // Earth's radius in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
+// Find the nearest bus stop to a given location using distance calculation
 export async function findNearestBusStop(
   destinationLat: number,
   destinationLng: number
@@ -71,48 +84,34 @@ export async function findNearestBusStop(
     // Get all C1 bus stops
     const busStops = c1RouteData.stops;
 
-    // Create origins string (all bus stops)
-    const origins = busStops
-      .map(stop => `${stop.coordinates.lat},${stop.coordinates.lng}`)
-      .join('|');
-
-    // Destination is the user's desired location
-    const destination = `${destinationLat},${destinationLng}`;
-
-    // Call Distance Matrix API
-    const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/distancematrix/json`,
-      {
-        params: {
-          origins: origins,
-          destinations: destination,
-          key: GOOGLE_MAPS_API_KEY,
-          mode: 'walking', // Use walking distance for better accuracy
-        },
-      }
-    );
-
-    console.log("Distance Matrix response: ", response.data);
-
-    // Find the closest stop
+    // Calculate distances to all stops
     let minDistance = Infinity;
     let nearestStopIndex = 0;
 
-    response.data.rows.forEach((row: { elements: Array<{ status: string; distance: { value: number } }> }, index: number) => {
-      const element = row.elements[0];
-      if (element.status === 'OK' && element.distance.value < minDistance) {
-        minDistance = element.distance.value;
+    busStops.forEach((stop, index) => {
+      const distanceMiles = calculateDistance(
+        stop.coordinates.lat,
+        stop.coordinates.lng,
+        destinationLat,
+        destinationLng
+      );
+
+      if (distanceMiles < minDistance) {
+        minDistance = distanceMiles;
         nearestStopIndex = index;
       }
     });
 
     const nearestStop = busStops[nearestStopIndex];
-    const distanceInfo = response.data.rows[nearestStopIndex].elements[0];
+    const walkingSpeedMph = 3; // Average walking speed
+    const durationMinutes = Math.round((minDistance / walkingSpeedMph) * 60);
+
+    console.log(`Nearest bus stop: ${nearestStop.name}, Distance: ${minDistance.toFixed(2)} mi, Duration: ${durationMinutes} min`);
 
     return {
       ...nearestStop,
-      distance: distanceInfo.distance.text,
-      duration: distanceInfo.duration.text,
+      distance: `${minDistance.toFixed(2)} mi`,
+      duration: `${durationMinutes} min`,
     };
   } catch (error) {
     console.error("Error finding nearest bus stop:", error);
@@ -170,16 +169,46 @@ export async function generateContentWithMapsGrounding(
 
   // Find nearest bus stop to the first location if available
   let nearestBusStop: BusStop | null = null;
+  let enhancedText = response.text || "";
+
+  console.log("Locations found:", locations.length);
+  console.log("First location coordinates:", locations[0]?.coordinates);
+
+  // Format the locations list with spacing
+  if (locations.length > 0) {
+    enhancedText += `\n\n---\n\n**📍 Recommended Locations:**\n\n`;
+    locations.slice(0, 5).forEach((loc, idx) => {
+      enhancedText += `${idx + 1}. **${loc.title}**\n\n`;
+    });
+  }
+
   if (locations.length > 0 && locations[0].coordinates) {
+    console.log("Finding nearest bus stop for:", locations[0].title);
     nearestBusStop = await findNearestBusStop(
       locations[0].coordinates.lat,
       locations[0].coordinates.lng
     );
-    console.log("Nearest bus stop: ", nearestBusStop);
+    console.log("Nearest bus stop found:", nearestBusStop);
+
+    // Enhance the response with bus route information
+    if (nearestBusStop) {
+      console.log("Adding transportation info to response");
+      enhancedText += `\n---\n\n**🚌 How to Get to "${locations[0].title}":**\n\n`;
+      enhancedText += `1. **Take Bus:** C1 (${c1RouteData.direction})\n\n`;
+      enhancedText += `2. **Board At:** UTC (University Transit Center)\n\n`;
+      enhancedText += `3. **Get Off At:** ${nearestBusStop.name}\n\n`;
+      enhancedText += `4. **Walk to Destination:** ${nearestBusStop.distance} (approximately ${nearestBusStop.duration})\n\n`;
+      enhancedText += `📝 **Tip:** The map on the right shows walking directions from the bus stop to your destination!`;
+      console.log("Enhanced text:", enhancedText);
+    } else {
+      console.log("No nearest bus stop found");
+    }
+  } else {
+    console.log("No locations or coordinates available");
   }
 
   return {
-    text: response.text || "",
+    text: enhancedText,
     locations: locations.slice(0, 5), // Limit to 5 locations
     nearestBusStop: nearestBusStop || undefined,
   };
