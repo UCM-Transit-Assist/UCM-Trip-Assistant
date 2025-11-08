@@ -68,6 +68,7 @@ export async function generateContentWithMapsGrounding(
 
   const locations: MapLocation[] = [];
   const grounding = response.candidates?.[0]?.groundingMetadata;
+  console.log("grounding: ", grounding);
   const longitudeLatitude = [];
 
   console.log("response.candidates: ", grounding);
