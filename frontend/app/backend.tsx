@@ -33,12 +33,15 @@ async function convertToLongitudeLatitude(address: string) {
   const response = await axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?place_id=${address}&key=${GOOGLE_MAPS_API_KEY}`
   );
-  console.log("convertToLongitudeLatitude response: ", response.data);
+  // console.log("convertToLongitudeLatitude response: ", response.data);
+  const longitude = response.data.results[0].geometry.location.lng;
+  const latitude = response.data.results[0].geometry.location.lat;
 
-  // return {
-  //   longitude: response.data.results[0].geometry.location.lng,
-  //   latitude: response.data.results[0].geometry.location.lat,
-  // };
+  // console.log("longitude: ", longitude);
+  // console.log("latitude: ", latitude);
+ 
+  return { longitude, latitude };
+
 }
 export async function generateContentWithMapsGrounding(
   user_text: string,
@@ -79,7 +82,7 @@ export async function generateContentWithMapsGrounding(
 
         let chunks = chunk.maps.placeId;
         let chunksArray = chunks.split("/");
-        convertToLongitudeLatitude(chunksArray[1]);
+        longitudeLatitude.push(convertToLongitudeLatitude(chunksArray[1]));
       }
     }
   }
