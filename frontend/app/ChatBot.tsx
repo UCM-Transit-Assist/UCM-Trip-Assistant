@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import {
   generateContentWithMapsGrounding,
   MapsGroundingResponse,
@@ -74,7 +75,9 @@ const ChatBot: React.FC<ChatBotProps> = ({
               <p className="font-semibold mb-1">
                 {msg.role === "user" ? "You" : "Assistant"}
               </p>
-              <p className="whitespace-pre-wrap">{msg.content}</p>
+              <div className="prose prose-sm max-w-none">
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
+              </div>
             </div>
           ))
         )}
