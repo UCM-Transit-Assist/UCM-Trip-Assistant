@@ -1,4 +1,4 @@
-# 😼🚌 UCM Trip Assistant
+# 😼🚌 CatTracker
 
 An intelligent trip planning assistant for UC Merced students that helps you find the best CatTracks routes from campus to your destination, and plan your bus routes using AI-powered location search and real-time bus schedules.
 
@@ -112,7 +112,7 @@ The assistant will:
 
 ## 🗺️ Supported Bus Routes
 
-**Bus Routes that Run on Weekdays:**
+###**Bus Routes that Run on Weekdays:**
   - **Bobcat Express** - UTC North
   - **C1** - UTC South
   - **C2** - UTC South
@@ -121,6 +121,6 @@ The assistant will:
   - **G-Line** - UTC South
   - **Yosemite Express** - UTC North
 
-**Bus Routes that Run on Weekends:**
+### **Bus Routes that Run on Weekends:**
   - **E1** - UTC South
   - **E2** - UTC South
