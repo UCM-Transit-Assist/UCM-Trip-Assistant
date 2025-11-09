@@ -113,14 +113,14 @@ The assistant will:
 ## 🗺️ Supported Bus Routes
 
 **Bus Routes that Run on Weekdays:**
-  - **Bobcat Express** - (Monday - Friday)
-  - **C1** - UTC South (Monday - Friday)
-  - **C2** - UTC South (Monday - Friday)
-  - **FastCat** - UTC North (Monday - Friday)
-  - **FastCat 2** - UTC North (Monday - Friday)
-  - **G-Line** - UTC South (Mon - Fri)
-  - **Yosemite Express** - UTC North (Mon - Fri)
+  - **Bobcat Express** - UTC North
+  - **C1** - UTC South
+  - **C2** - UTC South
+  - **FastCat** - UTC North
+  - **FastCat 2** - UTC North
+  - **G-Line** - UTC South
+  - **Yosemite Express** - UTC North
 
 **Bus Routes that Run on Weekends:**
-  - **E1** - UTC South (Saturday - Sunday)
-  - **E2** - UTC South (Saturday - Sunday)
+  - **E1** - UTC South
+  - **E2** - UTC South
