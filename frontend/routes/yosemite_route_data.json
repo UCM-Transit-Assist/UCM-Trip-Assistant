@@ -5,6 +5,7 @@
   "direction": "Full Loop",
   "stops": [
     {
+      "stop_number": 1,
       "id": "mercy_hospital_out",
       "name": "Mercy Hospital / Tri-College (Outbound)",
       "type": "regular",
@@ -15,6 +16,7 @@
       "aliases": ["Mercy Hospital", "Tri-College"]
     },
     {
+      "stop_number": 2,
       "id": "g_st_south_raleys",
       "name": "G St. South (Raley's)",
       "type": "regular",
@@ -25,6 +27,7 @@
       "aliases": ["G Street Raley's", "Raley's"]
     },
     {
+      "stop_number": 3,
       "id": "surgery_center_out",
       "name": "University Surgery Center (Outbound)",
       "type": "regular",
@@ -35,6 +38,7 @@
       "aliases": ["Surgery Center", "University Surgical Center"]
     },
     {
+      "stop_number": 4,
       "id": "moraga_subdivision",
       "name": "Moraga Subdivision",
       "type": "regular",
@@ -45,6 +49,7 @@
       "aliases": ["Moraga"]
     },
     {
+      "stop_number": 5,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "type": "regular",
@@ -55,6 +60,7 @@
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 6,
       "id": "foothill_dr_in",
       "name": "Foothill Dr.",
       "type": "request",
@@ -65,6 +71,7 @@
       "aliases": ["Foothill Drive"]
     },
     {
+      "stop_number": 7,
       "id": "mercy_hospital_in",
       "name": "Mercy Hospital / Tri-College (Inbound)",
       "type": "request",
@@ -75,6 +82,7 @@
       "aliases": ["Mercy Hospital In", "Tri-College In"]
     },
     {
+      "stop_number": 8,
       "id": "g_st_south_raleys_in",
       "name": "G St. South (Raley's) (Inbound)",
       "type": "request",
@@ -85,6 +93,7 @@
       "aliases": ["Raley's In"]
     },
     {
+      "stop_number": 9,
       "id": "surgery_center_in",
       "name": "University Surgery Center (Inbound)",
       "type": "request",
@@ -95,6 +104,7 @@
       "aliases": ["Surgery Center In"]
     },
     {
+      "stop_number": 10,
       "id": "moraga_subdivision_in",
       "name": "Moraga Subdivision (Inbound)",
       "type": "request",

@@ -6,6 +6,7 @@
   "direction": "UTC North / South",
   "stops": [
     {
+      "stop_number": 1,
       "id": "r_st_village_apartments",
       "name": "R St. Village Apartments",
       "type": "regular",
@@ -16,6 +17,7 @@
       "aliases": ["R St. Village", "R Street Villages"]
     },
     {
+      "stop_number": 2,
       "id": "el_redondo_dr_jenner",
       "name": "El Redondo Dr. (Bus Stop - Jenner Dr.)",
       "type": "regular",
@@ -26,6 +28,7 @@
       "aliases": ["El Redondo"]
     },
     {
+      "stop_number": 3,
       "id": "compass_pointe_apartments",
       "name": "Compass Pointe Apartments (Bus Stop - Pacific Dr.)",
       "type": "regular",
@@ -36,6 +39,7 @@
       "aliases": ["Compass Pointe"]
     },
     {
+      "stop_number": 4,
       "id": "merced_college_bus_terminal",
       "name": "Merced College The Bus Terminal",
       "type": "regular",
@@ -46,6 +50,7 @@
       "aliases": ["Merced College"]
     },
     {
+      "stop_number": 5,
       "id": "bellevue_ranch",
       "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
       "type": "regular",
@@ -56,6 +61,7 @@
       "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
     },
     {
+      "stop_number": 6,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "type": "regular",
@@ -66,6 +72,7 @@
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 7,
       "id": "the_promenade",
       "name": "The Promenade",
       "type": "regular",
@@ -77,6 +84,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 8,
       "id": "merced_mall_target",
       "name": "Merced Mall/Target",
       "type": "regular",
@@ -88,6 +96,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 9,
       "id": "loughborough_walmart",
       "name": "Loughborough Dr. (Walmart)",
       "type": "regular",
@@ -99,6 +108,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 10,
       "id": "amtrak_station",
       "name": "Amtrak Station",
       "type": "regular",
@@ -110,6 +120,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 11,
       "id": "k_st_18th_19th",
       "name": "K St. & 18th St. & 19th St.",
       "type": "regular",
@@ -121,6 +132,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 12,
       "id": "merced_transpo",
       "name": "Merced Transpo",
       "type": "request",
@@ -132,6 +144,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 13,
       "id": "rite_aid_walgreens",
       "name": "Rite Aid / Walgreens",
       "type": "regular",
@@ -143,6 +156,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 14,
       "id": "el_portal_plaza",
       "name": "El Portal Plaza & G St.",
       "type": "regular",

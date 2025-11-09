@@ -5,6 +5,7 @@
   "direction": "UTC South",
   "stops": [
     {
+      "stop_number": 1,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "address": "5200 North Lake Road, Merced, CA 95343",
@@ -16,6 +17,7 @@
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 2,
       "id": "g_st_south_raleys",
       "name": "G St. South (Raley's)",
       "type": "regular",
@@ -26,6 +28,7 @@
       "aliases": ["G Street Raley's", "Raley's"]
     },
     {
+      "stop_number": 3,
       "id": "amtrak_station",
       "name": "Amtrak Station",
       "type": "regular",
@@ -36,6 +39,7 @@
       "aliases": ["Amtrak", "Train Station"]
     },
     {
+      "stop_number": 4,
       "id": "k_st_18th_19th",
       "name": "K St. & 18th St. & 19th St.",
       "type": "regular",
@@ -45,7 +49,8 @@
       },
       "aliases": ["K and 18th", "Downtown"]
     },
-    {   
+    {
+      "stop_number": 5,
       "id": "loughborough_walmart",
       "name": "Loughborough Dr. (Walmart)",
       "type": "regular",
@@ -56,22 +61,25 @@
       "aliases": ["Walmart", "Loughborough Walmart"]
     },
     {
+      "stop_number": 6,
       "id": "meadows_ave_olivewood_foodmaxx",
       "name": "Meadows Ave. & Olivewood Dr. (Foodmaxx)",
       "type": "regular",
       "aliases": ["Foodmaxx", "Olivewood"]
     },
     {
+      "stop_number": 7,
       "id": "merced_mall_target",
       "name": "Merced Mall/Target",
       "type": "regular",
       "coordinates": {
-        "lat": 37.32336749335436, 
+        "lat": 37.32336749335436,
         "lng": -120.48556588741444
       },
       "aliases": ["Merced Mall", "Target", "Shopping center"]
     },
     {
+      "stop_number": 8,
       "id": "rite_aid_walgreens",
       "name": "Rite Aid / Walgreens",
       "type": "regular",
@@ -82,6 +90,7 @@
       "aliases": ["Rite Aid", "Walgreens", "Pharmacy stop"]
     },
     {
+      "stop_number": 9,
       "id": "yosemite_crossings_shopping_center",
       "name": "Yosemite Crossings Shopping Center",
       "type": "regular",

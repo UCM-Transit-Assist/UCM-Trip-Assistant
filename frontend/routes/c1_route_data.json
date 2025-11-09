@@ -5,6 +5,7 @@
   "direction": "UTC South",
   "stops": [
     {
+      "stop_number": 1,
       "id": "granville_apartments",
       "name": "Granville Apartments",
       "address": "1440 G Street, Merced, CA 95341",
@@ -15,6 +16,7 @@
       "aliases": ["Granville", "Granville Apts"]
     },
     {
+      "stop_number": 2,
       "id": "g_st_alexander_76",
       "name": "G St. & W. Alexander Ave. (76 Gas Station)",
       "address": "G Street & W Alexander Avenue, Merced, CA 95348",
@@ -25,6 +27,7 @@
       "aliases": ["76 station", "G and Alexander", "Gas station stop"]
     },
     {
+      "stop_number": 3,
       "id": "rite_aid_walgreens",
       "name": "Rite Aid / Walgreens",
       "address": "1570 G Street, Merced, CA 95341",
@@ -35,6 +38,7 @@
       "aliases": ["Rite Aid", "Walgreens", "Pharmacy stop"]
     },
     {
+      "stop_number": 4,
       "id": "el_portal_north",
       "name": "El Portal Plaza & G St. (Northbound)",
       "address": "El Portal Plaza, G Street, Merced, CA 95348",
@@ -45,6 +49,7 @@
       "aliases": ["El Portal", "El Portal Plaza", "Shopping center"]
     },
     {
+      "stop_number": 5,
       "id": "mercy_hospital_north",
       "name": "Mercy Hospital / Tri-College (Northbound)",
       "address": "333 Mercy Avenue, Merced, CA 95340",
@@ -55,6 +60,7 @@
       "aliases": ["Mercy Hospital", "Hospital", "Tri-College", "Downtown campus"]
     },
     {
+      "stop_number": 6,
       "id": "bellevue_ranch",
       "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
       "address": "M Street & Bellevue Road, Merced, CA 95348",
@@ -65,27 +71,30 @@
       "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
     },
     {
+      "stop_number": 7,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "address": "5200 North Lake Road, Merced, CA 95343",
       "coordinates": {
-        "lat": 37.361474228296544, 
+        "lat": 37.361474228296544,
         "lng": -120.4281067381593
       },
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 8,
       "id": "mercy_hospital_south",
       "name": "Mercy Hospital / Tri-College (Southbound)",
       "address": "333 Mercy Avenue, Merced, CA 95340",
       "coordinates": {
-        "lat": 37.33919117445795, 
+        "lat": 37.33919117445795,
         "lng": -120.46879489131155
       },
       "aliases": ["Mercy Hospital", "Hospital return", "Tri-College southbound", "Downtown campus return"],
       "direction": "southbound"
     },
     {
+      "stop_number": 9,
       "id": "el_portal_south",
       "name": "El Portal Plaza & G St. (Southbound)",
       "address": "El Portal Plaza, G Street, Merced, CA 95348",
@@ -97,6 +106,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 10,
       "id": "g_st_alexander_pauls",
       "name": "G St. & W. Alexander Ave. (Paul's Place)",
       "address": "G Street & W Alexander Avenue, Merced, CA 95348",

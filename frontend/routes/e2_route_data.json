@@ -6,6 +6,7 @@
   "direction": "UTC South / Loop",
   "stops": [
     {
+      "stop_number": 1,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "type": "regular",
@@ -16,6 +17,7 @@
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 2,
       "id": "the_promenade",
       "name": "The Promenade",
       "type": "regular",
@@ -26,6 +28,7 @@
       "aliases": ["Promenade", "Promenade Center", "Shopping center"]
     },
     {
+      "stop_number": 3,
       "id": "r_st_village_apartments",
       "name": "R St. Village Apartments",
       "type": "regular",
@@ -36,6 +39,7 @@
       "aliases": ["R St. Village", "R Street Villages"]
     },
     {
+      "stop_number": 4,
       "id": "el_redondo_dr_jenner",
       "name": "El Redondo Dr. (Bus Stop - Jenner Dr.)",
       "type": "regular",
@@ -46,6 +50,7 @@
       "aliases": ["El Redondo"]
     },
     {
+      "stop_number": 5,
       "id": "compass_pointe_apartments",
       "name": "Compass Pointe Apartments (Bus Stop - Pacific Dr.)",
       "type": "regular",
@@ -56,6 +61,7 @@
       "aliases": ["Compass Pointe"]
     },
     {
+      "stop_number": 6,
       "id": "merced_mall_target",
       "name": "Merced Mall/Target",
       "type": "regular",
@@ -66,6 +72,7 @@
       "aliases": ["Merced Mall", "Target", "Shopping center"]
     },
     {
+      "stop_number": 7,
       "id": "m_st_village_apartments",
       "name": "M St. Village Apartments",
       "type": "regular",
@@ -76,6 +83,7 @@
       "aliases": ["M Street Village"]
     },
     {
+      "stop_number": 8,
       "id": "ironstone_dr_m_st",
       "name": "Ironstone Dr. & M St.",
       "type": "regular",
@@ -86,6 +94,7 @@
       "aliases": ["Ironstone and M Street"]
     },
     {
+      "stop_number": 9,
       "id": "yosemite_cordova_physician_center",
       "name": "Yosemite & Cordova (Merced Physician Center)",
       "type": "regular",
@@ -96,6 +105,7 @@
       "aliases": ["Yosemite and Cordova", "Merced Physician Center"]
     },
     {
+      "stop_number": 10,
       "id": "moraga_subdivision",
       "name": "Moraga Subdivision",
       "type": "regular",

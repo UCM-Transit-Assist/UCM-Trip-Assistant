@@ -5,6 +5,7 @@
   "direction": "Full Loop",
   "stops": [
     {
+      "stop_number": 1,
       "id": "surgery_center_out",
       "name": "University Surgery Center (Outbound)",
       "type": "regular",
@@ -15,6 +16,7 @@
       "aliases": ["Surgery Center", "University Surgical Center"]
     },
     {
+      "stop_number": 2,
       "id": "the_promenade",
       "name": "The Promenade",
       "type": "regular",
@@ -25,6 +27,7 @@
       "aliases": ["Promenade", "Promenade Center", "Shopping center"]
     },
     {
+      "stop_number": 3,
       "id": "yosemite_crossings_shopping_center",
       "name": "Yosemite Crossings Shopping Center",
       "type": "regular",
@@ -35,6 +38,7 @@
       "aliases": ["Yosemite Crossings"]
     },
     {
+      "stop_number": 4,
       "id": "mercy_hospital_out",
       "name": "Mercy Hospital / Tri-College (Outbound)",
       "type": "regular",
@@ -45,6 +49,7 @@
       "aliases": ["Mercy Hospital", "Tri-College Out"]
     },
     {
+      "stop_number": 5,
       "id": "cardella_m_st",
       "name": "Cardella Rd. & M St.",
       "type": "regular",
@@ -55,6 +60,7 @@
       "aliases": ["Cardella and M Street"]
     },
     {
+      "stop_number": 6,
       "id": "bellevue_ranch",
       "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
       "type": "regular",
@@ -65,6 +71,7 @@
       "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
     },
     {
+      "stop_number": 7,
       "id": "mercy_hospital_in",
       "name": "Tri-College / Mercy Hospital (Inbound)",
       "coordinates": {
@@ -75,6 +82,7 @@
       "aliases": ["Tri-College In", "Mercy Hospital In"]
     },
     {
+      "stop_number": 8,
       "id": "yosemite_cordova_physician_center",
       "name": "Yosemite & Cordova (Merced Physician Center)",
       "type": "regular",
@@ -85,6 +93,7 @@
       "aliases": ["Yosemite and Cordova", "Merced Physician Center"]
     },
     {
+      "stop_number": 9,
       "id": "surgery_center_in",
       "name": "University Surgery Center (Inbound)",
       "type": "request",
@@ -95,6 +104,7 @@
       "aliases": ["Surgery Center In"]
     },
     {
+      "stop_number": 10,
       "id": "moraga_subdivision",
       "name": "Moraga Subdivision",
       "type": "request",
@@ -105,6 +115,7 @@
       "aliases": ["Moraga"]
     },
     {
+      "stop_number": 11,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "type": "regular",

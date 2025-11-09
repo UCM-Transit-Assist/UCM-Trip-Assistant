@@ -5,6 +5,7 @@
   "direction": "UTC North / South",
   "stops": [
     {
+      "stop_number": 1,
       "id": "r_st_village_apartments",
       "name": "R St. Village Apartments",
       "type": "regular",
@@ -15,6 +16,7 @@
       "aliases": ["R St. Village", "R Street Villages"]
     },
     {
+      "stop_number": 2,
       "id": "el_redondo_dr_jenner",
       "name": "El Redondo Dr. (Bus Stop - Jenner Dr.)",
       "type": "regular",
@@ -25,6 +27,7 @@
       "aliases": ["El Redondo"]
     },
     {
+      "stop_number": 3,
       "id": "compass_pointe_apartments",
       "name": "Compass Pointe Apartments (Bus Stop - Pacific Dr.)",
       "type": "regular",
@@ -35,6 +38,7 @@
       "aliases": ["Compass Pointe"]
     },
     {
+      "stop_number": 4,
       "id": "buena_vista_dr",
       "name": "Buena Vista Dr.",
       "type": "regular",
@@ -44,6 +48,7 @@
       }
     },
     {
+      "stop_number": 5,
       "id": "merced_mall_target",
       "name": "Merced Mall/Target",
       "type": "regular",
@@ -54,6 +59,7 @@
       "aliases": ["Merced Mall", "Target", "Shopping center"]
     },
     {
+      "stop_number": 6,
       "id": "m_st_village_apartments",
       "name": "M St. Village Apartments",
       "type": "regular",
@@ -64,6 +70,7 @@
       "aliases": ["M Street Village"]
     },
     {
+      "stop_number": 7,
       "id": "merced_college_bus_terminal",
       "name": "Merced College The Bus Terminal",
       "type": "regular",
@@ -74,6 +81,7 @@
       "aliases": ["Merced College"]
     },
     {
+      "stop_number": 8,
       "id": "cardella_m_st_north",
       "name": "Cardella Rd. & M St. (Northbound)",
       "type": "regular",
@@ -85,6 +93,7 @@
       "direction": "northbound"
     },
     {
+      "stop_number": 9,
       "id": "bellevue_ranch",
       "name": "M St. & Bellevue Rd. (Bellevue Ranch)",
       "type": "regular",
@@ -95,6 +104,7 @@
       "aliases": ["Bellevue", "M and Bellevue", "Bellevue Ranch"]
     },
     {
+      "stop_number": 10,
       "id": "utc",
       "name": "University Transit Center (UTC)",
       "type": "regular",
@@ -105,6 +115,7 @@
       "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
     },
     {
+      "stop_number": 11,
       "id": "foothill_dr",
       "name": "Foothill Dr.",
       "type": "regular",
@@ -115,6 +126,7 @@
       "direction": "southbound"
     },
     {
+      "stop_number": 12,
       "id": "cardella_m_st_south",
       "name": "Cardella Rd. & M St. (Southbound)",
       "type": "regular",
