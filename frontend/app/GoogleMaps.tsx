@@ -20,18 +20,13 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
   // UTC (University Transit Center) coordinates
   const UTC_STOP = routeData.stops.find((stop) => stop.id === "utc");
 
-  // Create bus route from UTC to nearest stop with destination marker
+  // Create bus route from UTC to nearest stop (bus route only, no destination)
   const createBusRouteMapUrl = () => {
-    if (
-      !mapData?.nearestBusStop ||
-      !UTC_STOP ||
-      !mapData.locations[0]?.coordinates
-    ) {
+    if (!mapData?.nearestBusStop || !UTC_STOP) {
       return null;
     }
 
     const nearestStop = mapData.nearestBusStop;
-    const destination = mapData.locations[0].coordinates;
 
     // Filter to only use regular bus stops (exclude checkpoints and request stops)
     // This ensures the route only includes actual passenger stops, not waypoints
@@ -76,8 +71,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
       .map((stop) => `${stop.coordinates!.lat},${stop.coordinates!.lng}`)
       .join("|");
 
-    // Create the directions URL showing the bus route
-    // Origin: UTC, Destination: Nearest stop, with intermediate stops as waypoints
+    // Create the directions URL showing ONLY the bus route
+    // Origin: UTC, Destination: Nearest stop (where user gets off), with intermediate stops as waypoints
     if (!UTC_STOP.coordinates || !nearestStop.coordinates) {
       return null;
     }
@@ -90,9 +85,29 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
       directionsUrl += `&waypoints=${waypoints}`;
     }
 
-    // Add the final destination as a marker by including it as an additional waypoint
-    directionsUrl += `|${destination.lat},${destination.lng}`;
     directionsUrl += `&mode=driving`; // Use driving to approximate bus route
+
+    return directionsUrl;
+  };
+
+  // Create walking directions from bus stop to destination
+  const createWalkingDirectionsUrl = () => {
+    if (!mapData?.nearestBusStop || !mapData.locations[0]?.coordinates) {
+      return null;
+    }
+
+    const nearestStop = mapData.nearestBusStop;
+    const destination = mapData.locations[0].coordinates;
+
+    if (!nearestStop.coordinates) {
+      return null;
+    }
+
+    // Create walking directions from bus stop to destination
+    let directionsUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleMapsApiKey}`;
+    directionsUrl += `&origin=${nearestStop.coordinates.lat},${nearestStop.coordinates.lng}`;
+    directionsUrl += `&destination=${destination.lat},${destination.lng}`;
+    directionsUrl += `&mode=walking`;
 
     return directionsUrl;
   };
@@ -134,7 +149,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
             </div>
           )}
 
-          {/* Bus Route from UTC to Nearest Stop with Destination Marker */}
+          {/* Bus Route from UTC to Nearest Stop */}
           {mapData.nearestBusStop &&
             mapData.nearestBusStop.routeId &&
             createBusRouteMapUrl() && (
@@ -142,13 +157,12 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                 <div className="p-4">
                   <p className="text-lg font-bold mb-2">
                     {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} Bus
-                    Route to {mapData.locations[0].title}
+                    Route
                   </p>
                   <p className="text-sm text-gray-600 mb-3">
                     Take the{" "}
                     {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} bus
-                    from UTC to {mapData.nearestBusStop.name}, then walk to your
-                    destination
+                    from UTC to {mapData.nearestBusStop.name}
                   </p>
                   <div className="bg-blue-50 p-3 rounded-lg space-y-1 text-sm">
                     <p className="flex items-center gap-2">
@@ -169,6 +183,45 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                       </span>{" "}
                       - Get off the bus here
                     </p>
+                  </div>
+                </div>
+                <iframe
+                  className="border-2 border-blue-500 rounded-lg"
+                  src={createBusRouteMapUrl() || ""}
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            )}
+
+          {/* Walking Directions from Bus Stop to Destination */}
+          {mapData.nearestBusStop &&
+            mapData.locations[0]?.coordinates &&
+            createWalkingDirectionsUrl() && (
+              <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                <div className="p-4">
+                  <p className="text-lg font-bold mb-2">
+                    Walking to {mapData.locations[0].title}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Walk from {mapData.nearestBusStop.name} to your destination
+                    ({mapData.nearestBusStop.distance}, approximately{" "}
+                    {mapData.nearestBusStop.duration})
+                  </p>
+                  <div className="bg-green-50 p-3 rounded-lg space-y-1 text-sm">
+                    <p className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">
+                        B
+                      </span>
+                      <span className="font-semibold">
+                        {mapData.nearestBusStop.name}
+                      </span>{" "}
+                      - Start walking from here
+                    </p>
                     <p className="flex items-center gap-2">
                       <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white font-bold text-xs">
                         C
@@ -176,16 +229,15 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                       <span className="font-semibold">
                         {mapData.locations[0].title}
                       </span>{" "}
-                      - Walk {mapData.nearestBusStop.distance} to reach your
-                      destination
+                      - Your destination
                     </p>
                   </div>
                 </div>
                 <iframe
-                  className="border-2 border-blue-500 rounded-lg"
-                  src={createBusRouteMapUrl() || ""}
+                  className="border-2 border-green-500 rounded-lg"
+                  src={createWalkingDirectionsUrl() || ""}
                   width="100%"
-                  height="600"
+                  height="400"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
