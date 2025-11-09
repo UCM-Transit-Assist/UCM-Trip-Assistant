@@ -107,18 +107,20 @@ The assistant will:
 ### Example Queries
 
 - "Where are good coffee shops nearby?"
-- "I need to get to Target by 5:00 PM"
 - "Show me restaurants near campus"
-- "What's the best way to get to the mall at 2pm?"
+- "What's the best way to get to the mall using E2?"
 
 ## 🗺️ Supported Bus Routes
 
-- **Bobcat Express** - (Monday - Friday)
-- **C1** - UTC South (Monday - Friday)
-- **C2** - UTC South (Monday - Friday)
-- **FastCat** - UTC North (Monday - Friday)
-- **FastCat 2** - UTC North (Monday - Friday)
-- **G-Line** - UTC South (Mon - Fri)
-- **Yosemite Express** - UTC North (Mon - Fri)
-- **E1** - UTC South (Saturday - Sunday)
-- **E2** - UTC South (Saturday - Sunday)
+**Bus Routes that Run on Weekdays:**
+  - **Bobcat Express** - (Monday - Friday)
+  - **C1** - UTC South (Monday - Friday)
+  - **C2** - UTC South (Monday - Friday)
+  - **FastCat** - UTC North (Monday - Friday)
+  - **FastCat 2** - UTC North (Monday - Friday)
+  - **G-Line** - UTC South (Mon - Fri)
+  - **Yosemite Express** - UTC North (Mon - Fri)
+
+**Bus Routes that Run on Weekends:**
+  - **E1** - UTC South (Saturday - Sunday)
+  - **E2** - UTC South (Saturday - Sunday)
