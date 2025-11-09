@@ -9,7 +9,7 @@
       "name": "University Surgery Center (Outbound)",
       "type": "regular",
       "coordinates": {
-        "lat": 37.33206692224449, 
+        "lat": 37.33206692224449,
         "lng": -120.45170888044021
       },
       "aliases": ["Surgery Center", "University Surgical Center"]
@@ -19,7 +19,7 @@
       "name": "The Promenade",
       "type": "regular",
       "coordinates": {
-        "lat": 37.332145060433746, 
+        "lat": 37.332145060433746,
         "lng": -120.46077891186155
       },
       "aliases": ["Promenade", "Promenade Center", "Shopping center"]
@@ -28,7 +28,7 @@
       "id": "yosemite_crossings_shopping_center",
       "name": "Yosemite Crossings Shopping Center",
       "type": "regular",
-       "coordinates": {
+      "coordinates": {
         "lat": 37.33262785102364,
         "lng": -120.46897538162821
       },
@@ -79,7 +79,7 @@
       "name": "Yosemite & Cordova (Merced Physician Center)",
       "type": "regular",
       "coordinates": {
-        "lat": 37.33208055065915, 
+        "lat": 37.33208055065915,
         "lng": -120.46282757709808
       },
       "aliases": ["Yosemite and Cordova", "Merced Physician Center"]
@@ -89,7 +89,7 @@
       "name": "University Surgery Center (Inbound)",
       "type": "request",
       "coordinates": {
-        "lat": 37.33206692224449, 
+        "lat": 37.33206692224449,
         "lng": -120.45170888044021
       },
       "aliases": ["Surgery Center In"]
@@ -99,7 +99,7 @@
       "name": "Moraga Subdivision",
       "type": "request",
       "coordinates": {
-        "lat": 37.33209113947716, 
+        "lat": 37.33209113947716,
         "lng": -120.43779646780489
       },
       "aliases": ["Moraga"]
@@ -109,10 +109,17 @@
       "name": "University Transit Center (UTC)",
       "type": "regular",
       "coordinates": {
-        "lat": 37.361474228296544, 
+        "lat": 37.361474228296544,
         "lng": -120.4281067381593
       },
-      "aliases": ["UTC", "University Transit Center", "Campus", "UC Merced", "Main campus", "Campus stop"]
+      "aliases": [
+        "UTC",
+        "University Transit Center",
+        "Campus",
+        "UC Merced",
+        "Main campus",
+        "Campus stop"
+      ]
     }
   ],
   "schedule": [

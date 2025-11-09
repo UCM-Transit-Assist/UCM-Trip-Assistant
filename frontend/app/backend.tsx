@@ -1,18 +1,55 @@
 import { GoogleGenAI } from "@google/genai";
 import axios from "axios";
 import c1RouteData from "../routes/c1_route_data.json";
+import c2RouteData from "../routes/c2_route_data.json";
+import fc1RouteData from "../routes/fc1_route_data.json";
+import fc2RouteData from "../routes/fc2_route_data.json";
+import e1RouteData from "../routes/e1_route_data.json";
+import e2RouteData from "../routes/e2_route_data.json";
+import beRouteData from "../routes/be_route_data.json";
+import gRouteData from "../routes/g_route_data.json";
+import yosemiteRouteData from "../routes/yosemite_route_data.json";
 
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
 // console.log("Google Maps API Key: ", GOOGLE_MAPS_API_KEY);
 
-const chipotle_coordinates = [37.31970104781838, -120.48617522530186];
-
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 // console.log("Gemini Api key: ", ai); // AIzaSyDCv0oPQKwvpkwzjWM3XpEKZs8Qx2NXBB4
 
+// Route data map for easy access
+export const ROUTE_DATA_MAP = {
+  c1: c1RouteData,
+  c2: c2RouteData,
+  fc1: fc1RouteData,
+  fc2: fc2RouteData,
+  e1: e1RouteData,
+  e2: e2RouteData,
+  be: beRouteData,
+  g: gRouteData,
+  yosemite: yosemiteRouteData,
+};
+
+export type RouteId = keyof typeof ROUTE_DATA_MAP;
+
+// Default route
+let currentRoute: RouteId = "fc1";
+
+export function setCurrentRoute(routeId: RouteId) {
+  currentRoute = routeId;
+  console.log(`Route changed to: ${routeId}`);
+}
+
+export function getCurrentRoute(): RouteId {
+  return currentRoute;
+}
+
+export function getCurrentRouteData() {
+  return ROUTE_DATA_MAP[currentRoute];
+}
+
 export function getAPIKey() {
-  return ai.apiKey;
+  return GEMINI_API_KEY;
 }
 export function getGoogleMapsApiKey() {
   return GOOGLE_MAPS_API_KEY;
@@ -21,8 +58,9 @@ export function getGoogleMapsApiKey() {
 export interface BusStop {
   id: string;
   name: string;
-  address: string;
-  coordinates: {
+  address?: string;
+  type?: string;
+  coordinates?: {
     lat: number;
     lng: number;
   };
@@ -59,46 +97,56 @@ async function convertToLongitudeLatitude(address: string) {
   // console.log("latitude: ", latitude);
 
   return { longitude, latitude };
-
 }
 
 // Calculate distance between two coordinates using Haversine formula
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+function calculateDistance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number {
   const R = 3959; // Earth's radius in miles
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
   const a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
 // Find the nearest bus stop to a given location using distance calculation
 export async function findNearestBusStop(
   destinationLat: number,
-  destinationLng: number
+  destinationLng: number,
+  routeId?: RouteId
 ): Promise<BusStop | null> {
   try {
-    // Get all C1 bus stops
-    const busStops = c1RouteData.stops;
+    // Get all bus stops for the selected route
+    const routeData = routeId ? ROUTE_DATA_MAP[routeId] : getCurrentRouteData();
+    const busStops = routeData.stops;
 
     // Calculate distances to all stops
     let minDistance = Infinity;
     let nearestStopIndex = 0;
 
     busStops.forEach((stop, index) => {
-      const distanceMiles = calculateDistance(
-        stop.coordinates.lat,
-        stop.coordinates.lng,
-        destinationLat,
-        destinationLng
-      );
+      if (stop.coordinates) {
+        const distanceMiles = calculateDistance(
+          stop.coordinates.lat,
+          stop.coordinates.lng,
+          destinationLat,
+          destinationLng
+        );
 
-      if (distanceMiles < minDistance) {
-        minDistance = distanceMiles;
-        nearestStopIndex = index;
+        if (distanceMiles < minDistance) {
+          minDistance = distanceMiles;
+          nearestStopIndex = index;
+        }
       }
     });
 
@@ -106,7 +154,11 @@ export async function findNearestBusStop(
     const walkingSpeedMph = 3; // Average walking speed
     const durationMinutes = Math.round((minDistance / walkingSpeedMph) * 60);
 
-    console.log(`Nearest bus stop: ${nearestStop.name}, Distance: ${minDistance.toFixed(2)} mi, Duration: ${durationMinutes} min`);
+    console.log(
+      `Nearest bus stop: ${nearestStop.name}, Distance: ${minDistance.toFixed(
+        2
+      )} mi, Duration: ${durationMinutes} min`
+    );
 
     return {
       ...nearestStop,
@@ -143,15 +195,16 @@ export async function generateContentWithMapsGrounding(
 
   const locations: MapLocation[] = [];
   const grounding = response.candidates?.[0]?.groundingMetadata;
-  const locationCoordinates: Array<{ longitude: number; latitude: number }> = [];
+  const locationCoordinates: Array<{ longitude: number; latitude: number }> =
+    [];
 
   console.log("response.candidates: ", grounding);
 
   if (grounding?.groundingChunks) {
     for (const chunk of grounding.groundingChunks) {
-      if (chunk.maps) {
-        let chunks = chunk.maps.placeId;
-        let chunksArray = chunks.split("/");
+      if (chunk.maps && chunk.maps.placeId) {
+        const chunks = chunk.maps.placeId;
+        const chunksArray = chunks.split("/");
         const coords = await convertToLongitudeLatitude(chunksArray[1]);
         locationCoordinates.push(coords);
 
@@ -192,9 +245,10 @@ export async function generateContentWithMapsGrounding(
 
     // Enhance the response with bus route information
     if (nearestBusStop) {
+      const routeData = getCurrentRouteData();
       console.log("Adding transportation info to response");
       enhancedText += `\n---\n\n**🚌 How to Get to "${locations[0].title}":**\n\n`;
-      enhancedText += `1. **Take Bus:** C1 (${c1RouteData.direction})\n\n`;
+      enhancedText += `1. **Take Bus:** ${routeData.route} (${routeData.direction})\n\n`;
       enhancedText += `2. **Board At:** UTC (University Transit Center)\n\n`;
       enhancedText += `3. **Get Off At:** ${nearestBusStop.name}\n\n`;
       enhancedText += `4. **Walk to Destination:** ${nearestBusStop.distance} (approximately ${nearestBusStop.duration})\n\n`;

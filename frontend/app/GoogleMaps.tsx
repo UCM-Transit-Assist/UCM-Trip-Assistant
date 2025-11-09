@@ -1,10 +1,9 @@
 import React from "react";
 import {
   MapsGroundingResponse,
-  getAPIKey,
   getGoogleMapsApiKey,
+  getCurrentRouteData,
 } from "./backend";
-import c1RouteData from "../routes/e2_route_data.json";
 
 interface GoogleMapsProps {
   mapData: MapsGroundingResponse | null;
@@ -13,49 +12,64 @@ interface GoogleMapsProps {
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
   const googleMapsApiKey = getGoogleMapsApiKey();
+  const routeData = getCurrentRouteData();
   console.log("Google Maps API Key: ", googleMapsApiKey);
+  console.log("Current route:", routeData.route);
 
   // UTC (University Transit Center) coordinates
-  const UTC_STOP = c1RouteData.stops.find(stop => stop.id === "utc");
+  const UTC_STOP = routeData.stops.find((stop) => stop.id === "utc");
 
   // Create bus route from UTC to nearest stop with destination marker
   const createBusRouteMapUrl = () => {
-    if (!mapData?.nearestBusStop || !UTC_STOP || !mapData.locations[0]?.coordinates) {
+    if (
+      !mapData?.nearestBusStop ||
+      !UTC_STOP ||
+      !mapData.locations[0]?.coordinates
+    ) {
       return null;
     }
 
     const nearestStop = mapData.nearestBusStop;
     const destination = mapData.locations[0].coordinates;
 
-    // Find stops between UTC and nearest stop along the C1 route
-    const utcIndex = c1RouteData.stops.findIndex(stop => stop.id === "utc");
-    const nearestStopIndex = c1RouteData.stops.findIndex(
-      stop => stop.id === nearestStop.id
+    // Find stops between UTC and nearest stop along the bus route
+    const utcIndex = routeData.stops.findIndex((stop) => stop.id === "utc");
+    const nearestStopIndex = routeData.stops.findIndex(
+      (stop) => stop.id === nearestStop.id
     );
 
-    let routeStops: typeof c1RouteData.stops = [];
+    let routeStops: Array<{
+      id: string;
+      name: string;
+      coordinates?: { lat: number; lng: number };
+    }> = [];
     if (nearestStopIndex > utcIndex) {
       // Going forward from UTC to nearest stop
-      routeStops = c1RouteData.stops.slice(utcIndex, nearestStopIndex + 1);
+      routeStops = routeData.stops.slice(utcIndex, nearestStopIndex + 1);
     } else if (nearestStopIndex < utcIndex) {
       // Going backward - take the route around
       routeStops = [
-        ...c1RouteData.stops.slice(utcIndex),
-        ...c1RouteData.stops.slice(0, nearestStopIndex + 1)
+        ...routeData.stops.slice(utcIndex),
+        ...routeData.stops.slice(0, nearestStopIndex + 1),
       ];
     } else {
       // Same stop (unlikely but handle it)
-      routeStops = [c1RouteData.stops[utcIndex]];
+      routeStops = [routeData.stops[utcIndex]];
     }
 
     // Build the directions URL with all intermediate stops as waypoints
     const intermediateStops = routeStops.slice(1, -1); // Exclude origin and destination
     const waypoints = intermediateStops
-      .map(stop => `${stop.coordinates.lat},${stop.coordinates.lng}`)
-      .join('|');
+      .filter((stop) => stop.coordinates)
+      .map((stop) => `${stop.coordinates!.lat},${stop.coordinates!.lng}`)
+      .join("|");
 
     // Create the directions URL showing the bus route
     // Origin: UTC, Destination: Nearest stop, with intermediate stops as waypoints
+    if (!UTC_STOP.coordinates || !nearestStop.coordinates) {
+      return null;
+    }
+
     let directionsUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleMapsApiKey}`;
     directionsUrl += `&origin=${UTC_STOP.coordinates.lat},${UTC_STOP.coordinates.lng}`;
     directionsUrl += `&destination=${nearestStop.coordinates.lat},${nearestStop.coordinates.lng}`;
@@ -86,13 +100,16 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
             <div className="bg-green-50 p-4 rounded-lg border-2 border-green-500">
               <h3 className="font-bold text-lg mb-2">Nearest Bus Stop</h3>
               <p className="font-semibold">{mapData.nearestBusStop.name}</p>
-              <p className="text-sm text-gray-600">{mapData.nearestBusStop.address}</p>
+              <p className="text-sm text-gray-600">
+                {mapData.nearestBusStop.address}
+              </p>
               <div className="mt-2 flex gap-4">
                 <span className="text-sm">
                   <strong>Distance:</strong> {mapData.nearestBusStop.distance}
                 </span>
                 <span className="text-sm">
-                  <strong>Walking Time:</strong> {mapData.nearestBusStop.duration}
+                  <strong>Walking Time:</strong>{" "}
+                  {mapData.nearestBusStop.duration}
                 </span>
               </div>
             </div>
@@ -106,26 +123,41 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                   C1 Bus Route to {mapData.locations[0].title}
                 </p>
                 <p className="text-sm text-gray-600 mb-3">
-                  Take the C1 bus from UTC to {mapData.nearestBusStop.name}, then walk to your destination
+                  Take the C1 bus from UTC to {mapData.nearestBusStop.name},
+                  then walk to your destination
                 </p>
                 <div className="bg-blue-50 p-3 rounded-lg space-y-1 text-sm">
                   <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white font-bold text-xs">A</span>
-                    <span className="font-semibold">UC Merced (UTC)</span> - Board the E2 bus here
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white font-bold text-xs">
+                      A
+                    </span>
+                    <span className="font-semibold">UC Merced (UTC)</span> -
+                    Board the E2 bus here
                   </p>
                   <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">B</span>
-                    <span className="font-semibold">{mapData.nearestBusStop.name}</span> - Get off the bus here
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">
+                      B
+                    </span>
+                    <span className="font-semibold">
+                      {mapData.nearestBusStop.name}
+                    </span>{" "}
+                    - Get off the bus here
                   </p>
                   <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white font-bold text-xs">C</span>
-                    <span className="font-semibold">{mapData.locations[0].title}</span> - Walk {mapData.nearestBusStop.distance} to reach your destination
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white font-bold text-xs">
+                      C
+                    </span>
+                    <span className="font-semibold">
+                      {mapData.locations[0].title}
+                    </span>{" "}
+                    - Walk {mapData.nearestBusStop.distance} to reach your
+                    destination
                   </p>
                 </div>
               </div>
               <iframe
                 className="border-2 border-blue-500 rounded-lg"
-                src={createBusRouteMapUrl() || ''}
+                src={createBusRouteMapUrl() || ""}
                 width="100%"
                 height="600"
                 style={{ border: 0 }}
@@ -138,9 +170,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
 
           {/* Location Information */}
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold mb-3">
-              All Recommended Locations:
-            </h3>
+            <h3 className="font-semibold mb-3">All Recommended Locations:</h3>
             <div className="space-y-3">
               {mapData.locations.map((location, idx) => (
                 <div key={idx} className="border-l-4 border-red-500 pl-3">
