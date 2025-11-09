@@ -141,7 +141,22 @@ export async function findNearestBusStop(
   try {
     // Get all bus stops for the selected route
     const routeData = routeId ? ROUTE_DATA_MAP[routeId] : getCurrentRouteData();
-    const busStops = routeData.stops;
+
+    // Filter to only include regular bus stops (exclude checkpoints and request stops)
+    // - "regular": Actual bus stops where passengers can board/exit
+    // - "checkpoint": Waypoints for route visualization only (not passenger stops)
+    // - "request": Request-only stops (not available for regular service)
+    const busStops = routeData.stops.filter(
+      (stop) => stop.type === "regular" || !stop.type
+    );
+
+    if (busStops.length === 0) {
+      console.warn(
+        "No regular bus stops found for route:",
+        routeId || currentRoute
+      );
+      return null;
+    }
 
     // Calculate distances to all stops
     let minDistance = Infinity;
