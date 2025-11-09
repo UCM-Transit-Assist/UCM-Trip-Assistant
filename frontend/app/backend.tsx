@@ -30,6 +30,17 @@ export const ROUTE_DATA_MAP = {
   yosemite: yosemiteRouteData,
 };
 
+let auto = false;
+
+export function setAuto(value: boolean) {
+  auto = value;
+  console.log(`Auto mode ${value ? "enabled" : "disabled"}`);
+}
+
+export function getAuto(): boolean {
+  return auto;
+}
+
 export type RouteId = keyof typeof ROUTE_DATA_MAP;
 
 // Default route
@@ -66,6 +77,8 @@ export interface BusStop {
   };
   distance?: string;
   duration?: string;
+  distanceValue?: number; // Numeric distance in miles for comparison
+  routeId?: RouteId; // Track which route this stop belongs to
 }
 
 export interface MapLocation {
@@ -84,7 +97,7 @@ export interface MapsGroundingResponse {
 }
 
 async function convertToLongitudeLatitude(address: string) {
-  console.log("address: ", address);
+  // console.log("address: ", address);
 
   const response = await axios.get(
     `https://maps.googleapis.com/maps/api/geocode/json?place_id=${address}&key=${GOOGLE_MAPS_API_KEY}`
@@ -164,6 +177,8 @@ export async function findNearestBusStop(
       ...nearestStop,
       distance: `${minDistance.toFixed(2)} mi`,
       duration: `${durationMinutes} min`,
+      distanceValue: minDistance,
+      routeId: routeId || currentRoute,
     };
   } catch (error) {
     console.error("Error finding nearest bus stop:", error);
@@ -220,6 +235,9 @@ export async function generateContentWithMapsGrounding(
     }
   }
 
+  console.log("locationCoordinates: ", locationCoordinates);
+  console.log("locations: ", locations);
+
   // Find nearest bus stop to the first location if available
   let nearestBusStop: BusStop | null = null;
   let enhancedText = response.text || "";
@@ -237,10 +255,49 @@ export async function generateContentWithMapsGrounding(
 
   if (locations.length > 0 && locations[0].coordinates) {
     console.log("Finding nearest bus stop for:", locations[0].title);
-    nearestBusStop = await findNearestBusStop(
-      locations[0].coordinates.lat,
-      locations[0].coordinates.lng
-    );
+
+    if (auto) {
+      let minDistance = Infinity;
+      let bestRoute: RouteId | null = null;
+      nearestBusStop = null;
+
+      console.log("🔍 AUTO MODE: Checking all routes...");
+
+      for (const route in ROUTE_DATA_MAP) {
+        const routeId = route as RouteId;
+        const busStop = await findNearestBusStop(
+          locations[0].coordinates.lat,
+          locations[0].coordinates.lng,
+          routeId
+        );
+
+        if (busStop && busStop.distanceValue !== undefined) {
+          console.log(
+            `  ${ROUTE_DATA_MAP[routeId].route}: ${busStop.name} - ${busStop.distance} away`
+          );
+
+          if (busStop.distanceValue < minDistance) {
+            minDistance = busStop.distanceValue;
+            nearestBusStop = busStop;
+            bestRoute = routeId;
+          }
+        }
+      }
+
+      if (bestRoute && nearestBusStop) {
+        // Update the current route to the best one found
+        setCurrentRoute(bestRoute);
+        console.log(
+          `✅ AUTO MODE: Selected ${ROUTE_DATA_MAP[bestRoute].route} (${nearestBusStop.distance} away)`
+        );
+      }
+    } else {
+      nearestBusStop = await findNearestBusStop(
+        locations[0].coordinates.lat,
+        locations[0].coordinates.lng
+      );
+    }
+
     console.log("Nearest bus stop found:", nearestBusStop);
 
     // Enhance the response with bus route information
@@ -260,6 +317,8 @@ export async function generateContentWithMapsGrounding(
   } else {
     console.log("No locations or coordinates available");
   }
+
+  console.log("locations: ", locations);
 
   return {
     text: enhancedText,

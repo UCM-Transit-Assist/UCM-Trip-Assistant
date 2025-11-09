@@ -3,6 +3,7 @@ import {
   MapsGroundingResponse,
   getGoogleMapsApiKey,
   getCurrentRouteData,
+  ROUTE_DATA_MAP,
 } from "./backend";
 
 interface GoogleMapsProps {
@@ -13,8 +14,8 @@ interface GoogleMapsProps {
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
   const googleMapsApiKey = getGoogleMapsApiKey();
   const routeData = getCurrentRouteData();
-  console.log("Google Maps API Key: ", googleMapsApiKey);
-  console.log("Current route:", routeData.route);
+  // console.log("Google Maps API Key: ", googleMapsApiKey);
+  // console.log("Current route:", routeData.route);
 
   // UTC (University Transit Center) coordinates
   const UTC_STOP = routeData.stops.find((stop) => stop.id === "utc");
@@ -98,7 +99,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
           {/* Nearest Bus Stop and Route Information */}
           {mapData.nearestBusStop && (
             <div className="bg-green-50 p-4 rounded-lg border-2 border-green-500">
-              <h3 className="font-bold text-lg mb-2">Nearest Bus Stop</h3>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-bold text-lg">Nearest Bus Stop</h3>
+                {mapData.nearestBusStop.routeId && (
+                  <span className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                    {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route}
+                  </span>
+                )}
+              </div>
               <p className="font-semibold">{mapData.nearestBusStop.name}</p>
               <p className="text-sm text-gray-600">
                 {mapData.nearestBusStop.address}
@@ -132,7 +140,9 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                       A
                     </span>
                     <span className="font-semibold">UC Merced (UTC)</span> -
-                    Board the E2 bus here
+                    Board the{" "}
+                    {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} bus
+                    here
                   </p>
                   <p className="flex items-center gap-2">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">
