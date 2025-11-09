@@ -131,20 +131,9 @@
       "aliases": ["K and 18th", "Downtown"],
       "direction": "southbound"
     },
+
     {
       "stop_number": 12,
-      "id": "merced_transpo",
-      "name": "Merced Transpo",
-      "type": "request",
-      "coordinates": {
-        "lat": 37.3016, 
-        "lng": -120.4875
-      },
-      "aliases": ["Merced Transportation Center", "Greyhound", "Greyhound Bus Station"],
-      "direction": "southbound"
-    },
-    {
-      "stop_number": 13,
       "id": "rite_aid_walgreens",
       "name": "Rite Aid / Walgreens",
       "type": "regular",
@@ -156,7 +145,7 @@
       "direction": "southbound"
     },
     {
-      "stop_number": 14,
+      "stop_number": 13,
       "id": "el_portal_plaza",
       "name": "El Portal Plaza & G St.",
       "type": "regular",

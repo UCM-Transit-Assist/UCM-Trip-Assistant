@@ -33,11 +33,22 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
     const nearestStop = mapData.nearestBusStop;
     const destination = mapData.locations[0].coordinates;
 
+    // Filter to only use regular bus stops (exclude checkpoints and request stops)
+    // This ensures the route only includes actual passenger stops, not waypoints
+    const regularStops = routeData.stops.filter(
+      (stop) => stop.type === "regular" || !stop.type
+    );
+
     // Find stops between UTC and nearest stop along the bus route
-    const utcIndex = routeData.stops.findIndex((stop) => stop.id === "utc");
-    const nearestStopIndex = routeData.stops.findIndex(
+    const utcIndex = regularStops.findIndex((stop) => stop.id === "utc");
+    const nearestStopIndex = regularStops.findIndex(
       (stop) => stop.id === nearestStop.id
     );
+
+    if (utcIndex === -1 || nearestStopIndex === -1) {
+      console.warn("Could not find UTC or nearest stop in regular stops");
+      return null;
+    }
 
     let routeStops: Array<{
       id: string;
@@ -46,16 +57,16 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
     }> = [];
     if (nearestStopIndex > utcIndex) {
       // Going forward from UTC to nearest stop
-      routeStops = routeData.stops.slice(utcIndex, nearestStopIndex + 1);
+      routeStops = regularStops.slice(utcIndex, nearestStopIndex + 1);
     } else if (nearestStopIndex < utcIndex) {
       // Going backward - take the route around
       routeStops = [
-        ...routeData.stops.slice(utcIndex),
-        ...routeData.stops.slice(0, nearestStopIndex + 1),
+        ...regularStops.slice(utcIndex),
+        ...regularStops.slice(0, nearestStopIndex + 1),
       ];
     } else {
       // Same stop (unlikely but handle it)
-      routeStops = [routeData.stops[utcIndex]];
+      routeStops = [regularStops[utcIndex]];
     }
 
     // Build the directions URL with all intermediate stops as waypoints
@@ -124,62 +135,67 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
           )}
 
           {/* Bus Route from UTC to Nearest Stop with Destination Marker */}
-          {mapData.nearestBusStop && createBusRouteMapUrl() && (
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="p-4">
-                <p className="text-lg font-bold mb-2">
-                  C1 Bus Route to {mapData.locations[0].title}
-                </p>
-                <p className="text-sm text-gray-600 mb-3">
-                  Take the C1 bus from UTC to {mapData.nearestBusStop.name},
-                  then walk to your destination
-                </p>
-                <div className="bg-blue-50 p-3 rounded-lg space-y-1 text-sm">
-                  <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white font-bold text-xs">
-                      A
-                    </span>
-                    <span className="font-semibold">UC Merced (UTC)</span> -
-                    Board the{" "}
+          {mapData.nearestBusStop &&
+            mapData.nearestBusStop.routeId &&
+            createBusRouteMapUrl() && (
+              <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                <div className="p-4">
+                  <p className="text-lg font-bold mb-2">
+                    {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} Bus
+                    Route to {mapData.locations[0].title}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Take the{" "}
                     {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} bus
-                    here
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">
-                      B
-                    </span>
-                    <span className="font-semibold">
-                      {mapData.nearestBusStop.name}
-                    </span>{" "}
-                    - Get off the bus here
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white font-bold text-xs">
-                      C
-                    </span>
-                    <span className="font-semibold">
-                      {mapData.locations[0].title}
-                    </span>{" "}
-                    - Walk {mapData.nearestBusStop.distance} to reach your
+                    from UTC to {mapData.nearestBusStop.name}, then walk to your
                     destination
                   </p>
+                  <div className="bg-blue-50 p-3 rounded-lg space-y-1 text-sm">
+                    <p className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white font-bold text-xs">
+                        A
+                      </span>
+                      <span className="font-semibold">UC Merced (UTC)</span> -
+                      Board the{" "}
+                      {ROUTE_DATA_MAP[mapData.nearestBusStop.routeId].route} bus
+                      here
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white font-bold text-xs">
+                        B
+                      </span>
+                      <span className="font-semibold">
+                        {mapData.nearestBusStop.name}
+                      </span>{" "}
+                      - Get off the bus here
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-500 text-white font-bold text-xs">
+                        C
+                      </span>
+                      <span className="font-semibold">
+                        {mapData.locations[0].title}
+                      </span>{" "}
+                      - Walk {mapData.nearestBusStop.distance} to reach your
+                      destination
+                    </p>
+                  </div>
                 </div>
+                <iframe
+                  className="border-2 border-blue-500 rounded-lg"
+                  src={createBusRouteMapUrl() || ""}
+                  width="100%"
+                  height="600"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
-              <iframe
-                className="border-2 border-blue-500 rounded-lg"
-                src={createBusRouteMapUrl() || ""}
-                width="100%"
-                height="600"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          )}
+            )}
 
           {/* Location Information */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          {/* <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-semibold mb-3">All Recommended Locations:</h3>
             <div className="space-y-3">
               {mapData.locations.map((location, idx) => (
@@ -196,7 +212,7 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div className="flex items-center justify-center h-full">
