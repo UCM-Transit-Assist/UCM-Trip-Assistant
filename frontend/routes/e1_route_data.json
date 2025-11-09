@@ -50,6 +50,15 @@
       "aliases": ["K and 18th", "Downtown"]
     },
     {
+      "id": "ashby_and_cooper",
+      "name": "Ashby and Cooper Intersection",
+      "type": "checkpoint",
+      "coordinates": {
+        "lat": 37.31369583786222, 
+        "lng": -120.51927336274179
+      }
+    },
+    {
       "stop_number": 5,
       "id": "loughborough_walmart",
       "name": "Loughborough Dr. (Walmart)",

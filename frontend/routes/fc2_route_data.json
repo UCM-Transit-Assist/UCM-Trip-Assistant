@@ -49,6 +49,15 @@
       "aliases": ["Mercy Hospital", "Tri-College Out"]
     },
     {
+      "id": "park_and_ride",
+      "name": "M St. Park and Ride",
+      "type": "checkpoint",
+      "coordinates":{
+        "lat": 37.35746808885885,
+        "lng": -120.47703155790789
+      }
+    },
+    {
       "stop_number": 5,
       "id": "cardella_m_st",
       "name": "Cardella Rd. & M St.",
