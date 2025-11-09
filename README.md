@@ -112,7 +112,7 @@ The assistant will:
 
 ## 🗺️ Supported Bus Routes
 
-###**Bus Routes that Run on Weekdays:**
+### **Bus Routes that Run on Weekdays:**
   - **Bobcat Express** - UTC North
   - **C1** - UTC South
   - **C2** - UTC South
