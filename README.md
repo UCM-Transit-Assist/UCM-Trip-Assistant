@@ -8,7 +8,7 @@ An intelligent trip planning assistant for UC Merced students that helps you fin
 - **Bus Route Planning**: Automatically finds the nearest bus stop to your destination and provides step-by-step directions
 - **Interactive Maps**: Visual representation of bus routes, walking paths, and destinations with Google Maps integration
 - **Time-Based Scheduling**: Specify your desired arrival time and get exact bus departure times from UTC
-- **Multiple Bus Routes**: Support for 9 different bus routes (C1, C2, E1, E2, FastCat, BE, G, Yosemite)
+- **Multiple Bus Routes**: Support for 9 different bus routes (C1, C2, E1, E2, FastCat, FastCat 2, Bobcat Express, G-Line, YosemiteExpress)
 - **Real-Time Bus Schedules**: Access to complete bus timetables for all routes during Fall 2025 semester
 - **Walking Directions**: Calculates walking distance and time from bus stops to destinations
 
