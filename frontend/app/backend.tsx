@@ -208,6 +208,7 @@ export async function generateContentWithMapsGrounding(
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: user_text,
+    
     config: {
       // Turn on grounding with Google Maps
       tools: [{ googleMaps: { enableWidget: true } }],
