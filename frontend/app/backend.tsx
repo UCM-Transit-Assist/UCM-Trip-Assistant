@@ -210,8 +210,8 @@ export async function findNearestBusStop(
 }
 export async function generateContentWithMapsGrounding(
   user_text: string,
-  latitude: number,
-  longitude: number
+  latitude: number = 37.30293194200341,
+  longitude: number = -120.48662202501602
 ): Promise<MapsGroundingResponse> {
   // Enhanced system prompt for better AI responses
   const systemPrompt = `You are the UCM Transit Assistant, an expert AI guide for University of California, Merced students and visitors.
