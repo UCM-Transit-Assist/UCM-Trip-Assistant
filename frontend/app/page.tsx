@@ -34,9 +34,15 @@ export default function Home() {
   };
 
   React.useEffect(() => {
+    setBackendAuto(true);
+  }, []);
+
+
+  React.useEffect(() => {
     if (mapData?.nearestBusStop?.routeId) {
       setSelectedRoute(mapData.nearestBusStop.routeId);
     }
+  
   }, [mapData]);
 
   return (

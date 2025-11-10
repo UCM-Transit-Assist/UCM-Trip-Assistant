@@ -138,6 +138,7 @@ export async function findNearestBusStop(
   destinationLng: number,
   routeId?: RouteId
 ): Promise<BusStop | null> {
+  console.log("findNearestBusStop called with destinationLat: ", destinationLat, "destinationLng: ", destinationLng, "routeId: ", routeId);
   try {
     // Get all bus stops for the selected route
     const routeData = routeId ? ROUTE_DATA_MAP[routeId] : getCurrentRouteData();
@@ -284,15 +285,15 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
     }
   }
 
-  console.log("locationCoordinates: ", locationCoordinates);
-  console.log("locations: ", locations);
+  // console.log("locationCoordinates: ", locationCoordinates);
+  // console.log("locations: ", locations);
 
   // Find nearest bus stop to the first location if available
   let nearestBusStop: BusStop | null = null;
   let enhancedText = response.text || "";
 
-  console.log("Locations found:", locations.length);
-  console.log("First location coordinates:", locations[0]?.coordinates);
+  // console.log("Locations found:", locations.length);
+  // console.log("First location coordinates:", locations[0]?.coordinates);
 
   // Format the locations list with spacing
   if (locations.length > 0) {
@@ -303,14 +304,14 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
   }
 
   if (locations.length > 0 && locations[0].coordinates) {
-    console.log("Finding nearest bus stop for:", locations[0].title);
+    // console.log("Finding nearest bus stop for:", locations[0].title);
 
     if (auto) {
       let minDistance = Infinity;
       let bestRoute: RouteId | null = null;
       nearestBusStop = null;
 
-      console.log("🔍 AUTO MODE: Checking all routes...");
+      // console.log("🔍 AUTO MODE: Checking all routes...");
 
       for (const route in ROUTE_DATA_MAP) {
         const routeId = route as RouteId;
@@ -321,9 +322,9 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
         );
 
         if (busStop && busStop.distanceValue !== undefined) {
-          console.log(
-            `  ${ROUTE_DATA_MAP[routeId].route}: ${busStop.name} - ${busStop.distance} away`
-          );
+          // console.log(
+          //   `  ${ROUTE_DATA_MAP[routeId].route}: ${busStop.name} - ${busStop.distance} away`
+          // );
 
           if (busStop.distanceValue < minDistance) {
             minDistance = busStop.distanceValue;
@@ -341,25 +342,26 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
         );
       }
     } else {
+      console.log("AUTO MODE OFF:");
       nearestBusStop = await findNearestBusStop(
         locations[0].coordinates.lat,
         locations[0].coordinates.lng
       );
     }
 
-    console.log("Nearest bus stop found:", nearestBusStop);
+    // console.log("Nearest bus stop found:", nearestBusStop);
 
     // Enhance the response with bus route information
     if (nearestBusStop) {
       const routeData = getCurrentRouteData();
-      console.log("Adding transportation info to response");
+      // console.log("Adding transportation info to response");
       enhancedText += `\n---\n\n**🚌 How to Get to "${locations[0].title}":**\n\n`;
       enhancedText += `1. **Take Bus:** ${routeData.route} (${routeData.direction})\n\n`;
       enhancedText += `2. **Board At:** UTC (University Transit Center)\n\n`;
       enhancedText += `3. **Get Off At:** ${nearestBusStop.name}\n\n`;
       enhancedText += `4. **Walk to Destination:** ${nearestBusStop.distance} (approximately ${nearestBusStop.duration})\n\n`;
       enhancedText += `📝 **Tip:** The map on the right shows walking directions from the bus stop to your destination!`;
-      console.log("Enhanced text:", enhancedText);
+      // console.log("Enhanced text:", enhancedText);
     } else {
       console.log("No nearest bus stop found");
     }
@@ -367,7 +369,7 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
     console.log("No locations or coordinates available");
   }
 
-  console.log("locations: ", locations);
+  // console.log("locations: ", locations);
 
   return {
     text: enhancedText,
