@@ -69,6 +69,7 @@ export function getGoogleMapsApiKey() {
 export interface BusStop {
   id: string;
   name: string;
+  stop_number?: number; // Stop number for actual passenger stops (undefined for markers/checkpoints)
   address?: string;
   type?: string;
   coordinates?: {
@@ -94,6 +95,7 @@ export interface MapsGroundingResponse {
   text: string;
   locations: MapLocation[];
   nearestBusStop?: BusStop;
+  singleLocation?: MapLocation;
 }
 
 async function convertToLongitudeLatitude(address: string) {
@@ -138,17 +140,22 @@ export async function findNearestBusStop(
   destinationLng: number,
   routeId?: RouteId
 ): Promise<BusStop | null> {
-  console.log("findNearestBusStop called with destinationLat: ", destinationLat, "destinationLng: ", destinationLng, "routeId: ", routeId);
+  console.log(
+    "findNearestBusStop called with destinationLat: ",
+    destinationLat,
+    "destinationLng: ",
+    destinationLng,
+    "routeId: ",
+    routeId
+  );
   try {
     // Get all bus stops for the selected route
     const routeData = routeId ? ROUTE_DATA_MAP[routeId] : getCurrentRouteData();
 
-    // Filter to only include regular bus stops (exclude checkpoints and request stops)
-    // - "regular": Actual bus stops where passengers can board/exit
-    // - "checkpoint": Waypoints for route visualization only (not passenger stops)
-    // - "request": Request-only stops (not available for regular service)
+    // Filter to only include stops with stop_number (actual passenger stops)
+    // Stops without stop_number are markers/checkpoints for route visualization only
     const busStops = routeData.stops.filter(
-      (stop) => stop.type === "regular" || !stop.type
+      (stop) => stop.stop_number !== undefined
     );
 
     if (busStops.length === 0) {
@@ -203,8 +210,8 @@ export async function findNearestBusStop(
 }
 export async function generateContentWithMapsGrounding(
   user_text: string,
-  latitude: number = 37.30293194200341,
-  longitude: number = -120.48662202501602
+  latitude: number,
+  longitude: number
 ): Promise<MapsGroundingResponse> {
   // Enhanced system prompt for better AI responses
   const systemPrompt = `You are the UCM Transit Assistant, an expert AI guide for University of California, Merced students and visitors.
@@ -228,6 +235,8 @@ RESPONSE GUIDELINES:
 4. **Be Concise**: Give top 3-5 recommendations maximum
 5. **Be Helpful**: Include relevant details like hours, atmosphere, price range if relevant
 6. **Stay Local**: Focus on Merced area, not distant cities
+7. **Build**: If the user stated a restuarant a fast food restaurant, build a list of fast food restaurants and make sure to build the map of the closest fast food restuarant. For example, if the user said the word "chipotle", find the nearest chipotle. 
+8. **Always**: Unless if the user doesn't ask for you to build the map, always build something
 
 RESPONSE FORMAT:
 - Start with a brief, friendly acknowledgment
@@ -303,6 +312,8 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
     });
   }
 
+  let singleLocation = locations[0];
+
   if (locations.length > 0 && locations[0].coordinates) {
     // console.log("Finding nearest bus stop for:", locations[0].title);
 
@@ -315,38 +326,72 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
 
       for (const route in ROUTE_DATA_MAP) {
         const routeId = route as RouteId;
-        const busStop = await findNearestBusStop(
-          locations[0].coordinates.lat,
-          locations[0].coordinates.lng,
-          routeId
-        );
+        console.log("All locations: ", locations);
+        for (const location of locations) {
+          if (location.coordinates) {
+            console.log("location: ", location);
+            const busStop = await findNearestBusStop(
+              location.coordinates.lat,
+              location.coordinates.lng,
+              routeId
+            );
+            if (busStop && busStop.distanceValue !== undefined) {
+              // console.log(
+              //   `  ${ROUTE_DATA_MAP[routeId].route}: ${busStop.name} - ${busStop.distance} away`
+              // );
 
-        if (busStop && busStop.distanceValue !== undefined) {
-          // console.log(
-          //   `  ${ROUTE_DATA_MAP[routeId].route}: ${busStop.name} - ${busStop.distance} away`
-          // );
-
-          if (busStop.distanceValue < minDistance) {
-            minDistance = busStop.distanceValue;
-            nearestBusStop = busStop;
-            bestRoute = routeId;
+              if (busStop.distanceValue < minDistance) {
+                minDistance = busStop.distanceValue;
+                nearestBusStop = busStop;
+                bestRoute = routeId;
+                singleLocation = location;
+              }
+            }
           }
         }
       }
-
       if (bestRoute && nearestBusStop) {
-        // Update the current route to the best one found
         setCurrentRoute(bestRoute);
         console.log(
           `✅ AUTO MODE: Selected ${ROUTE_DATA_MAP[bestRoute].route} (${nearestBusStop.distance} away)`
         );
       }
     } else {
-      console.log("AUTO MODE OFF:");
-      nearestBusStop = await findNearestBusStop(
-        locations[0].coordinates.lat,
-        locations[0].coordinates.lng
+      let minDistance = Infinity;
+      nearestBusStop = null;
+
+      console.log(
+        `🔍 MANUAL MODE: Checking ${currentRoute} route for all locations...`
       );
+
+      for (const location of locations) {
+        if (location.coordinates) {
+          console.log("Checking location: ", location.title);
+          const busStop = await findNearestBusStop(
+            location.coordinates.lat,
+            location.coordinates.lng,
+            currentRoute
+          );
+
+          if (busStop && busStop.distanceValue !== undefined) {
+            console.log(
+              `  ${location.title}: ${busStop.name} - ${busStop.distance} away`
+            );
+
+            if (busStop.distanceValue < minDistance) {
+              minDistance = busStop.distanceValue;
+              nearestBusStop = busStop;
+              singleLocation = location;
+            }
+          }
+        }
+      }
+
+      if (nearestBusStop) {
+        console.log(
+          `✅ MANUAL MODE: Best stop on ${ROUTE_DATA_MAP[currentRoute].route}: ${nearestBusStop.name} (${nearestBusStop.distance} away)`
+        );
+      }
     }
 
     // console.log("Nearest bus stop found:", nearestBusStop);
@@ -355,7 +400,9 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
     if (nearestBusStop) {
       const routeData = getCurrentRouteData();
       // console.log("Adding transportation info to response");
-      enhancedText += `\n---\n\n**🚌 How to Get to "${locations[0].title}":**\n\n`;
+      enhancedText += `\n---\n\n**🚌 How to Get to "${
+        singleLocation?.title || locations[0]?.title
+      }":**\n\n`;
       enhancedText += `1. **Take Bus:** ${routeData.route} (${routeData.direction})\n\n`;
       enhancedText += `2. **Board At:** UTC (University Transit Center)\n\n`;
       enhancedText += `3. **Get Off At:** ${nearestBusStop.name}\n\n`;
@@ -370,10 +417,11 @@ Remember: You're a helpful campus assistant, not just a search engine. Be warm, 
   }
 
   // console.log("locations: ", locations);
-
+  console.log("returning nearestBusStop: ", nearestBusStop);
   return {
     text: enhancedText,
     locations: locations.slice(0, 5), // Limit to 5 locations
     nearestBusStop: nearestBusStop || undefined,
+    singleLocation: singleLocation || undefined,
   };
 }

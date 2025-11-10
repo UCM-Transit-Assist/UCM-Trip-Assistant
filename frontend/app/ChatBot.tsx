@@ -36,6 +36,7 @@ const ChatBot: React.FC<ChatBotProps> = ({
         ...prev,
         { role: "assistant", content: response.text },
       ]);
+      console.log("response to Google Maps: ", response);
       onResponse(response);
     } catch (error) {
       console.error("Error generating content:", error);

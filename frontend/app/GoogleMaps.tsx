@@ -6,12 +6,18 @@ import {
   ROUTE_DATA_MAP,
 } from "./backend";
 
+import { useEffect } from "react";
+
 interface GoogleMapsProps {
   mapData: MapsGroundingResponse | null;
   isLoading: boolean;
 }
 
 const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
+  useEffect(() => {
+    console.log("mapData: ", mapData);
+  }, [mapData]);
+
   const googleMapsApiKey = getGoogleMapsApiKey();
   const routeData = getCurrentRouteData();
 
@@ -78,14 +84,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
   };
 
   const createWalkingDirectionsUrl = () => {
-    if (!mapData?.nearestBusStop || !mapData.locations[0]?.coordinates) {
+    if (!mapData?.nearestBusStop || !mapData.singleLocation?.coordinates) {
       return null;
     }
 
     const nearestStop = mapData.nearestBusStop;
-    const destination = mapData.locations[0].coordinates;
+    const destination = mapData.singleLocation?.coordinates;
 
-    if (!nearestStop.coordinates) {
+    if (!nearestStop.coordinates || !destination) {
       return null;
     }
 
@@ -93,6 +99,8 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
     directionsUrl += `&origin=${nearestStop.coordinates.lat},${nearestStop.coordinates.lng}`;
     directionsUrl += `&destination=${destination.lat},${destination.lng}`;
     directionsUrl += `&mode=walking`;
+
+    console.log("createWalkingDirectionsUrl directionsUrl: ", directionsUrl);
 
     return directionsUrl;
   };
@@ -214,12 +222,14 @@ const GoogleMaps: React.FC<GoogleMapsProps> = ({ mapData, isLoading }) => {
 
           {/* Walking Directions Map */}
           {mapData.nearestBusStop &&
-            mapData.locations[0]?.coordinates &&
+            mapData.singleLocation?.coordinates &&
             createWalkingDirectionsUrl() && (
               <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
                 <div className="p-5 bg-green-50 border-b border-gray-200">
                   <p className="text-xl font-bold text-gray-900 mb-2">
-                    Walking to {mapData.locations[0].title}
+                    Walking to{" "}
+                    {mapData.singleLocation?.title ||
+                      mapData.locations[0]?.title}
                   </p>
                   <p className="text-sm text-gray-700 mb-4">
                     Walk from {mapData.nearestBusStop.name} to your destination

@@ -53,8 +53,6 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <img src="/logo.png" alt="UC Merced Logo" width={64} height={64} />
-
-
               <div>
                 <h1 className="text-3xl font-bold text-blue-900">
                   UCM Transit Assistant
